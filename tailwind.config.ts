@@ -12,7 +12,13 @@ export default {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+      backgroundImage: {
+        "hero-pattern": "url('/top.webp')",
+      },
     },
   },
-  plugins: [],
+  plugins: [
+    require("daisyui"), 
+    require("@tailwindcss/typography")
+  ],
 } satisfies Config;
