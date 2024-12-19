@@ -1,15 +1,15 @@
 "use client";
+import classnames from "classnames";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import {
-  AiFillFilter,
-  AiFillFolder,
-  AiFillHome,
-  AiOutlineMenu,
-  AiOutlineInfoCircle,
+    AiFillFilter,
+    AiFillFolder,
+    AiFillHome,
+    AiOutlineInfoCircle,
+    AiOutlineMenu,
 } from "react-icons/ai";
-import classnames from "classnames";
 const Navbar = () => {
   const [nav, setNav] = useState(false);
   const handleNav = () => {

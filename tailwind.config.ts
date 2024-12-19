@@ -14,6 +14,7 @@ export default {
       },
       backgroundImage: {
         "hero-pattern": "url('/top.webp')",
+        "bg-japan": "url('/bg-japan.jpg')"
       },
     },
   },

@@ -1,7 +1,8 @@
 'use client'
+import { useRef } from "react";
 import Hero from "./Hero";
 import HomeBottom from "./HomeBottom";
-import React, { useRef } from "react";
+import Footer from "./components/Footer";
 export default function Home() {
   const targetRef = useRef<HTMLDivElement | null>(null);
   const handleScroll = () => {
@@ -13,6 +14,7 @@ export default function Home() {
     <>
       <Hero onScrollClick={handleScroll} />
       <HomeBottom targetRef={targetRef} />
+      <Footer />
     </>
   );
 }

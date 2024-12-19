@@ -1,6 +1,6 @@
-import Userbox from "./components/Userbox";
-import React, { RefObject } from "react";
+import { RefObject } from "react";
 import ArticleCard from "./components/ArticleCard";
+import Userbox from "./components/Userbox";
 const HomeBottom = ({
   targetRef,
 }: {
@@ -10,7 +10,7 @@ const HomeBottom = ({
     <>
       <div
         ref={targetRef}
-        className="grid md:grid-cols-[400px_1fr] min-h-[600px] max-h-[2000px] py-20 px-10"
+        className="grid md:grid-cols-[400px_1fr] min-h-[600px] max-h-[2000px] py-20 px-10 bg-bg-japan bg-fixed bg-no-repeat bg-center bg-cover"
         id="HomeBottom"
       >
         <div className="hidden md:block w-[400px] mx-auto relative">
