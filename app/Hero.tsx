@@ -3,7 +3,7 @@
 import { AiOutlineArrowDown } from "react-icons/ai";
 import { ReactTyped } from "react-typed";
 
-const Hero = ({ onScrollClick }: { onScrollClick: () => void }) => {
+const Hero = () => {
   return (
     <div className="h-screen w-screen bg-hero-pattern bg-cover bg-center">
       <div className="max-w-[800px] w-full h-screen mx-auto text-center flex flex-col justify-center text-white">
@@ -30,7 +30,7 @@ const Hero = ({ onScrollClick }: { onScrollClick: () => void }) => {
         className="absolute left-1/2 bottom-5 animate-bounce duration-500 hover:cursor-pointer"
         size={30}
         color="rgba(255,255,255,.8)"
-        onClick={onScrollClick}
+        
       />
     </div>
   );

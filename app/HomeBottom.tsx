@@ -1,25 +1,27 @@
-import { RefObject } from "react";
-import ArticleCard from "./components/ArticleCard";
+import { RefObject, ReactNode } from "react";
+import HomeBottomRight from "./components/HomeBottomRight";
 import Userbox from "./components/Userbox";
+import Pagination from "./components/Pagination";
+interface Props {
+  // targetRef: RefObject<HTMLDivElement | null>;
+  leftComponent?: ReactNode;
+  rightComponent?: ReactNode;
+  searchParams: { page: string };
+}
 const HomeBottom = ({
-  targetRef,
-}: {
-  targetRef: RefObject<HTMLDivElement | null>;
-}) => {
+  leftComponent = <Userbox />,
+  rightComponent,
+}: Props) => {
   return (
     <>
       <div
-        ref={targetRef}
-        className="grid md:grid-cols-[400px_1fr] min-h-[600px] max-h-[2000px] py-20 px-10 bg-bg-japan bg-fixed bg-no-repeat bg-center bg-cover"
+        className="grid md:grid-cols-[400px_1fr] min-h-[600px]  py-20 px-10 bg-bg-japan bg-fixed bg-no-repeat bg-center bg-cover"
         id="HomeBottom"
       >
         <div className="hidden md:block w-[400px] mx-auto relative">
-          <Userbox />
+          {leftComponent}
         </div>
-        <div className="mx-auto">
-            <ArticleCard />
-            <ArticleCard />
-        </div>
+        <div className="mx-auto ">{rightComponent}</div>
       </div>
     </>
   );
