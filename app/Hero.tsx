@@ -30,7 +30,6 @@ const Hero = () => {
         className="absolute left-1/2 bottom-5 animate-bounce duration-500 hover:cursor-pointer"
         size={30}
         color="rgba(255,255,255,.8)"
-        
       />
     </div>
   );

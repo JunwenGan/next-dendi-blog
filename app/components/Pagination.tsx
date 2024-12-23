@@ -6,6 +6,7 @@ import {
   AiOutlineDoubleRight,
 } from "react-icons/ai";
 import { useRouter, useSearchParams } from "next/navigation";
+import { useRefContext } from "./RefProvider";
 interface Props {
   itemCount: number;
   pageSize: number;
@@ -13,16 +14,18 @@ interface Props {
 }
 
 const Pagination = ({ itemCount, pageSize, currentPage }: Props) => {
+  const globalRef = useRefContext()?.globalRef!;
   const router = useRouter();
   const searchParams = useSearchParams();
 
   const pageCount = Math.ceil(itemCount / pageSize);
   if (pageCount <= 1) return null;
 
-  const changePage = (page: number) => {
+  const changePage = async (page: number) => {
     const params = new URLSearchParams(searchParams);
     params.set("page", page.toString());
-    router.push("?" + params.toString());
+    router.push("?" + params.toString(), { scroll: false });
+
   };
   return (
     <div className="join mx-auto">
@@ -40,7 +43,10 @@ const Pagination = ({ itemCount, pageSize, currentPage }: Props) => {
       >
         <AiFillCaretLeft size={15} />
       </button>
-      <button className="join-item btn disabled:bg-gray-300 disabled:text-gray-500 disabled:cursor-not-allowed" disabled>
+      <button
+        className="join-item btn disabled:bg-gray-300 disabled:text-gray-500 disabled:cursor-not-allowed"
+        disabled
+      >
         Page {currentPage} of {pageCount}
       </button>
 

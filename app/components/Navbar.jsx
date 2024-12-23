@@ -1,22 +1,25 @@
 "use client";
 import classnames from "classnames";
+import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import {
-    AiFillFilter,
-    AiFillFolder,
-    AiFillHome,
-    AiOutlineInfoCircle,
-    AiOutlineMenu,
+  AiFillFilter,
+  AiFillFolder,
+  AiFillHome,
+  AiOutlineInfoCircle,
+  AiOutlineMenu,
 } from "react-icons/ai";
 const Navbar = () => {
+  const { status, data: session } = useSession();
   const [nav, setNav] = useState(false);
   const handleNav = () => {
     setNav(!nav);
   };
+
   return (
-    <div className="fixed top-0 left-0 w-full flex items-center mx-auto px-4 h-12 justify-between bg-gray-200 bg-transparent">
+    <div className="fixed top-0 left-0 w-full flex items-center mx-auto px-20 h-12 justify-between bg-gray-200 bg-transparent">
       <AiOutlineMenu
         size={20}
         className="block md:hidden"
@@ -26,6 +29,27 @@ const Navbar = () => {
         Dendi Blog
       </h1>
       <NavLinks />
+      {status === "loading" && <div>Loading...</div>}
+      {status === "authenticated" && (
+        <div className="flex gap-3">
+          <div className="avatar">
+            <div className="w-8 rounded-full">
+              <img src={session.user.image} alt="User_avatar" />
+            </div>
+          </div>
+          <div className="btn btn-sm btn-neutral">
+            <Link href="/api/auth/signout">sign out</Link>
+          </div>
+        </div>
+      )}
+      {status === "unauthenticated" && (
+        <div className="flex gap-3">
+          <div className="btn btn-sm ">signup</div>
+          <div className="btn btn-sm btn-neutral">
+            <Link href="/api/auth/signin">login</Link>
+          </div>
+        </div>
+      )}
 
       <div
         className={
@@ -62,11 +86,11 @@ const NavLinks = () => {
       href: "/category",
       icon: AiFillFilter,
     },
-    {
-      label: "About",
-      href: "/about",
-      icon: AiOutlineInfoCircle,
-    },
+    // {
+    //   label: "About",
+    //   href: "/about",
+    //   icon: AiOutlineInfoCircle,
+    // },
   ];
   return (
     <ul className="hidden md:flex text-white">

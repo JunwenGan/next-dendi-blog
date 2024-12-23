@@ -38,7 +38,7 @@ The team decided to:
 `;
   
   return (
-    <div className="mx-auto py-16 px-4 bg-white w-full shadow border">
+    <div className="mx-auto py-16 px-4 bg-white w-full shadow border mb-5">
       <div className="container mx-auto px-10">
         <div className="flex place-content-center flex-col">
           <p className="font-bold text-center text-2xl">{title}</p>
