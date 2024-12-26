@@ -19,7 +19,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="fixed top-0 left-0 w-full flex items-center mx-auto px-20 h-12 justify-between bg-gray-200 bg-transparent">
+    <div className="absolute top-0 left-0 w-full flex items-center mx-auto px-20 h-12 justify-between bg-gray-500/75">
       <AiOutlineMenu
         size={20}
         className="block md:hidden"

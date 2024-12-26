@@ -25,3 +25,7 @@ body {
     @apply hover:text-zinc-900 transition duration-300;
   }
 }
+
+html {
+  scroll-behavior: smooth;
+}

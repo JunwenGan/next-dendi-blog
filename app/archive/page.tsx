@@ -1,5 +1,5 @@
 import Userbox from "../components/Userbox";
-import ArticleCard from "../components/ArticleCard";
+import ArticleCard from "../components/PostCard";
 import Pagination from "../components/Pagination";
 const page = ({
   searchParams,

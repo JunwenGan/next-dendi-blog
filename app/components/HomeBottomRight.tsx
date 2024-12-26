@@ -1,5 +1,5 @@
 import prisma from "@/prisma/client";
-import ArticleCardList from "./ArticleCardList";
+import PostCardList from "./PostCardList";
 import Pagination from "./Pagination";
 
 interface Prop {
@@ -16,7 +16,7 @@ const HomeBottomRight = async ({ searchParams }: Prop) => {
   const postCount = await prisma.post.count();
   return (
     <>
-      <ArticleCardList posts={posts} />
+      <PostCardList posts={posts} />
       <div className="flex justify-center my-3">
         <Pagination
           itemCount={postCount}
