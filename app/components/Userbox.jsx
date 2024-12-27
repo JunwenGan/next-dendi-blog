@@ -1,6 +1,12 @@
 import prisma from "@/prisma/client";
 import { FaGithubSquare, FaLinkedin } from "react-icons/fa";
+import { getServerSession } from "next-auth";
+import authOptions from "../auth/authOptions";
+
 const Userbox = async () => {
+  const session = await getServerSession(authOptions);
+
+  
   const postCount = await prisma.post.count();
   return (
     <div className="card bg-base-100 w-96 shadow-xl p-5 sticky top-14 ">

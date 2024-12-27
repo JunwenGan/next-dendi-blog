@@ -68,12 +68,11 @@ The team decided to:
         <div className="mt-5 prose max-w-full">
           <div className="max-h-96 overflow-hidden relative">
             <Markdown>{content}</Markdown>
-            {/* {content} */}Ï
-            {/* Gradient Overlay */}
+            {/* {content} */}Ï{/* Gradient Overlay */}
             <div className="absolute bottom-0 left-0 right-0 h-10 bg-gradient-to-t from-white to-transparent"></div>
           </div>
-          <button className="btn btn-neutral mt-3 block underline text-sm">
-            <Link href={`/post/${id}`}> Read More</Link>
+          <button className="btn btn-neutral mt-3 block  text-sm">
+            <Link href={`/post/${id}`} className="text-white no-underline">Read More</Link>
           </button>
         </div>
       </div>

@@ -4,8 +4,9 @@ import PostDetail from "../_components/PostDetail";
 import Userbox from "@/app/components/Userbox";
 import prisma from "@/prisma/client";
 import { cache } from "react";
-import { getHeadings } from "../../lib/getHeading"
-import { TableOfContents } from "../../components/TableOfContents";
+import { TableOfContents } from "@/app/components/TableOfContents";
+import { getHeadings } from "@/app/lib/getHeading";
+
 interface Props {
   params: { id: string };
 }
@@ -14,9 +15,10 @@ const fetchPost = cache(async (postId: number) =>
 );
 
 const page = async ({ params }: Props) => {
-  const post_obj = await params
+  const post_obj = await params;
   const postId = parseInt(post_obj.id);
   const post = await fetchPost(postId);
+  const headings = await getHeadings(post?.content!);
   return (
     <>
       <div
@@ -24,7 +26,10 @@ const page = async ({ params }: Props) => {
         id="HomeBottom"
       >
         <div className="hidden md:block w-[400px] mx-auto relative">
-          <Userbox />
+          {/* <Userbox /> */}
+          <div className="card bg-base-100 w-96 shadow-xl p-5 sticky top-80">
+            <TableOfContents headings={headings} />
+          </div>
         </div>
         <div className="mx-auto ">
           <PostDetail post={post!} />

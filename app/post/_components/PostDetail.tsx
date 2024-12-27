@@ -74,7 +74,7 @@ const PostDetail = async ({ post }: Prop) => {
   const totalWord = wordCount(markdown);
   const timeConsumed = calculateReadingTime(totalWord);
 
-  const headings = await getHeadings(markdown!);
+  // const headings = await getHeadings(markdown!);
  
 
   return (
@@ -108,7 +108,7 @@ const PostDetail = async ({ post }: Prop) => {
         <div className="mt-5 prose max-w-full">
           <div className="relative">
             {/* <MarkdownWithToc markdown={markdown!} /> */}
-            <TableOfContents headings={headings} />
+            {/* <TableOfContents headings={headings} /> */}
             <Markdown rehypePlugins={[rehypeSlug, rehypeAutolinkHeadings]}>{markdown}</Markdown>
           </div>
         </div>
