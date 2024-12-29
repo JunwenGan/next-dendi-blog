@@ -6,55 +6,29 @@ import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeSlug from "rehype-slug";
 import { TableOfContents } from "../../components/TableOfContents";
 import { getHeadings } from "../../lib/getHeading";
-`# Middle-Ground Solution Example
+import PostComment from "./PostComment";
 
-In situations where two parties have conflicting priorities, finding a **middle-ground solution** can help achieve balance.
+import { log } from "console";
 
-## Contents
+import {
+  Post as PrismaPost,
+  Comment as PrismaComment,
+  User,
+} from "@prisma/client";
 
-## Scenario
-A team is debating between two approaches:
-1. **High Budget, High Quality** - Focus on premium materials, resulting in a higher cost.
-2. **Low Budget, Low Quality** - Use cost-effective materials but compromise on quality.
+// Extend the Comment model to include the related User
+interface CommentWithUser extends PrismaComment {
+  user: User; // Add the User relationship to Comment
+}
 
-![Middle Ground](https://dendi-blog.s3.us-east-1.amazonaws.com/liverpool.webp "Middle-Ground Example")
+// Extend the Post model to include the related Comment array
+interface PostWithComments extends PrismaPost {
+  Comment: CommentWithUser[]; // Use the extended Comment type
+}
 
-## Middle-Ground Solution
-The team decided to:
-- Use mid-tier materials that balance cost and quality.
-- Prioritize critical components for higher-quality materials.
-- Adjust the timeline slightly to reduce rush costs.
-
----
-
-## Key Benefits
-- **Compromise**: Both sides felt heard and respected.
-- **Efficiency**: The solution reduced unnecessary spending while maintaining acceptable quality.
-
----
-
-*Finding a middle-ground solution is often the key to successful collaboration.*`;
-const markdownContent = `
-# Table of contents
-1. [Introduction](#introduction)
-2. [Some paragraph](#paragraph1)
-    1. [Sub paragraph](#subparagraph1)
-3. [Another paragraph](#paragraph2)
-
-## This is the introduction <a id="introduction"></a>
-Some introduction text, formatted in heading 2 style
-
-## Some paragraph <a id="paragraph1"></a>
-The first paragraph text
-
-### Sub paragraph <a id="subparagraph1"></a>
-This is a sub paragraph, formatted in heading 3 style
-
-## Another paragraph <a id="paragraph2"></a>
-The second paragraph text
-`;
+// Props interface for your component
 interface Prop {
-  post: Post;
+  post: PostWithComments; // Use the extended Post type
 }
 const wordCount = (str: string | null) => {
   const words = str!.trim().split(/\s+/);
@@ -69,13 +43,11 @@ const calculateReadingTime = (
 };
 
 const PostDetail = async ({ post }: Prop) => {
- 
   const { content: markdown, createAt, updatedAt, title } = post;
   const totalWord = wordCount(markdown);
   const timeConsumed = calculateReadingTime(totalWord);
 
   // const headings = await getHeadings(markdown!);
- 
 
   return (
     <div className="mx-auto py-16 px-4 bg-white w-full shadow border">
@@ -109,7 +81,10 @@ const PostDetail = async ({ post }: Prop) => {
           <div className="relative">
             {/* <MarkdownWithToc markdown={markdown!} /> */}
             {/* <TableOfContents headings={headings} /> */}
-            <Markdown rehypePlugins={[rehypeSlug, rehypeAutolinkHeadings]}>{markdown}</Markdown>
+            <Markdown rehypePlugins={[rehypeSlug, rehypeAutolinkHeadings]}>
+              {markdown}
+            </Markdown>
+            <PostComment post={post} />
           </div>
         </div>
       </div>

@@ -8,7 +8,7 @@ import Hero from "./Hero";
 import { useRef } from "react";
 import { RefProvider } from "./components/RefProvider";
 import AuthProvider from "./auth/Provider";
-
+import QueryClientProvider from "./QueryClientProvider";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -33,12 +33,14 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <AuthProvider>
-          <RefProvider>
-            <Navbar />
-            {children}
-          </RefProvider>
-        </AuthProvider>
+        <QueryClientProvider>
+          <AuthProvider>
+            <RefProvider>
+              <Navbar />
+              {children}
+            </RefProvider>
+          </AuthProvider>
+        </QueryClientProvider>
       </body>
     </html>
   );

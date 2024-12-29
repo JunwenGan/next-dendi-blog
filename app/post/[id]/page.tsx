@@ -11,7 +11,16 @@ interface Props {
   params: { id: string };
 }
 const fetchPost = cache(async (postId: number) =>
-  prisma.post.findUnique({ where: { id: postId } })
+  prisma.post.findUnique({
+    where: { id: postId },
+    include: {
+      Comment: {
+        include: {
+          user: true, // Include related user information for each comment
+        },
+      },
+    },
+  })
 );
 
 const page = async ({ params }: Props) => {

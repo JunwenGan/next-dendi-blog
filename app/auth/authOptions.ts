@@ -11,41 +11,61 @@ const authOptions: NextAuthOptions = {
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID!,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
+      authorization: {
+        params: {
+          prompt: "consent",
+          access_type: "offline",
+          response_type: "code"
+        }
+      }
     }),
     GitHubProvider({
       clientId: process.env.GITHUB_ID!,
       clientSecret: process.env.GITHUB_SECRET!,
     }),
-    CredentialsProvider({
-      name: "Email and Password",
-      credentials: {
-        email: { label: "Email", type: "text", placeholder: "Email" },
-        password: {
-          label: "Password",
-          type: "password",
-          placeholder: "Password",
-        },
-      },
-      async authorize(credentials, req) {
-        if (credentials || !credentials!.email || !credentials!.password)
-          return null;
+    // CredentialsProvider({
+    //   name: "Email and Password",
+    //   credentials: {
+    //     email: { label: "Email", type: "text", placeholder: "Email" },
+    //     password: {
+    //       label: "Password",
+    //       type: "password",
+    //       placeholder: "Password",
+    //     },
+    //   },
+    //   async authorize(credentials, req) {
+    //     if (credentials || !credentials!.email || !credentials!.password)
+    //       return null;
 
-        const dbUser = await prisma.user.findFirst({
-          where: { email: credentials!.email },
-        });
+    //     const dbUser = await prisma.user.findFirst({
+    //       where: { email: credentials!.email },
+    //     });
 
-        if (dbUser && dbUser.password === credentials!.password) {
-          const { password, createdAt, id, ...dbUserWithoutPassword } = dbUser;
-          return dbUserWithoutPassword as User;
-        }
+    //     if (dbUser && dbUser.password === credentials!.password) {
+    //       const { password, createdAt, id, ...dbUserWithoutPassword } = dbUser;
+    //       return dbUserWithoutPassword as User;
+    //     }
 
-        return null;
-      },
-    }),
+    //     return null;
+    //   },
+    // }),
   ],
-//   pages: {
-//     signIn: '/auth',
-//   },
+  callbacks: {
+    jwt({ token, account, user }) {
+      if (account) {
+        token.accessToken = account.access_token
+        token.id = user?.id
+      }
+      return token
+    },
+    session({ session, token }) {
+        // I skipped the line below coz it gave me a TypeError
+        // session.accessToken = token.accessToken;
+        session.user.id = token.id;
+  
+        return session;
+      },
+  },
   session: {
     strategy: "jwt",
   },
