@@ -11,7 +11,30 @@ import {
   AiOutlineInfoCircle,
   AiOutlineMenu,
 } from "react-icons/ai";
+const links = [
+  {
+    label: "Home",
+    href: "/",
+    icon: AiFillHome,
+  },
+  {
+    label: "Archive",
+    href: "/archive",
+    icon: AiFillFolder,
+  },
+  {
+    label: "Category",
+    href: "/category",
+    icon: AiFillFilter,
+  },
+  // {
+  //   label: "About",
+  //   href: "/about",
+  //   icon: AiOutlineInfoCircle,
+  // },
+];
 const Navbar = () => {
+  const currentPath = usePathname();
   const { status, data: session } = useSession();
   const [nav, setNav] = useState(false);
   const handleNav = () => {
@@ -59,10 +82,36 @@ const Navbar = () => {
         }
       >
         <ul className="p-4 text-white text-1xl">
-          <li className="p-4 border-b border-gray-600">Home</li>
-          <li className="p-4 border-b border-gray-600">Archive</li>
-          <li className="p-4 border-b border-gray-600"> <Link href="/api/auth/signin">signup</Link></li>
-          <li className="p-4 border-b border-gray-600"> <Link href="/api/auth/signin">login</Link></li>
+          {links.map((link) => (
+            <li key={link.href} className="p-4 border-b border-gray-600">
+              <Link
+                href={link.href}
+                className={classnames({
+                  // "!text-zinc-900": link.href === currentPath,
+                  "nav-link": true,
+                })}
+                onClick={() => setNav(false)}
+              >
+                {link.label}
+              </Link>
+            </li>
+          ))}
+          {/* <li className="p-4 border-b border-gray-600">Home</li>
+          <li className="p-4 border-b border-gray-600">Archive</li> */}
+          {status === "unauthenticated" && (
+            <>
+              {" "}
+              <li className="p-4 border-b border-gray-600">
+                {" "}
+                <Link href="/api/auth/signin">signup</Link>
+              </li>
+              <li className="p-4 border-b border-gray-600">
+                {" "}
+                <Link href="/api/auth/signin">login</Link>
+              </li>
+            </>
+          )}
+
           {/* <li className="p-4 border-b border-gray-600">Category</li>
           <li className="p-4">About</li> */}
         </ul>
@@ -74,28 +123,6 @@ const Navbar = () => {
 const NavLinks = () => {
   const currentPath = usePathname();
 
-  const links = [
-    {
-      label: "Home",
-      href: "/",
-      icon: AiFillHome,
-    },
-    {
-      label: "Archive",
-      href: "/archive",
-      icon: AiFillFolder,
-    },
-    {
-      label: "Category",
-      href: "/category",
-      icon: AiFillFilter,
-    },
-    // {
-    //   label: "About",
-    //   href: "/about",
-    //   icon: AiOutlineInfoCircle,
-    // },
-  ];
   return (
     <ul className="hidden md:flex text-white">
       {links.map((link) => (

@@ -71,8 +71,8 @@ The team decided to:
             {/* {content} */}Ï{/* Gradient Overlay */}
             <div className="absolute bottom-0 left-0 right-0 h-10 bg-gradient-to-t from-white to-transparent"></div>
           </div>
-          <button className="btn btn-neutral mt-3 block  text-sm">
-            <Link href={`/post/${id}`} className="text-white no-underline">Read More</Link>
+          <button className="btn btn-outline mt-3 block text-sm">
+            <Link href={`/post/${id}`} className="text-inherit no-underline">Read More</Link>
           </button>
         </div>
       </div>
