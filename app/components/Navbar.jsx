@@ -19,7 +19,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="absolute top-0 left-0 w-full flex items-center mx-auto px-20 h-12 justify-between bg-gray-500/75">
+    <div className="absolute top-0 left-0 w-full px-5 flex items-center mx-auto md:px-20 h-12 justify-between bg-gray-500/75">
       <AiOutlineMenu
         size={20}
         className="block md:hidden"
@@ -43,8 +43,10 @@ const Navbar = () => {
         </div>
       )}
       {status === "unauthenticated" && (
-        <div className="flex gap-3">
-          <div className="btn btn-sm ">signup</div>
+        <div className="hidden md:flex gap-3 ">
+          <div className="btn btn-sm ">
+            <Link href="/api/auth/signin">signup</Link>
+          </div>
           <div className="btn btn-sm btn-neutral">
             <Link href="/api/auth/signin">login</Link>
           </div>
@@ -59,8 +61,10 @@ const Navbar = () => {
         <ul className="p-4 text-white text-1xl">
           <li className="p-4 border-b border-gray-600">Home</li>
           <li className="p-4 border-b border-gray-600">Archive</li>
-          <li className="p-4 border-b border-gray-600">Category</li>
-          <li className="p-4">About</li>
+          <li className="p-4 border-b border-gray-600"> <Link href="/api/auth/signin">signup</Link></li>
+          <li className="p-4 border-b border-gray-600"> <Link href="/api/auth/signin">login</Link></li>
+          {/* <li className="p-4 border-b border-gray-600">Category</li>
+          <li className="p-4">About</li> */}
         </ul>
       </div>
     </div>
@@ -95,7 +99,7 @@ const NavLinks = () => {
   return (
     <ul className="hidden md:flex text-white">
       {links.map((link) => (
-        <li key={link.href} className="p-4 flex items-center">
+        <li key={link.href} className="p-1 mr-4 flex items-center box-border ">
           <link.icon
             color="white"
             className={classnames({

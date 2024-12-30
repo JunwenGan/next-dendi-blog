@@ -1,5 +1,5 @@
 import HomeBottom from "@/app/HomeBottom";
-import React, { RefObject } from "react";
+import React, { RefObject, Suspense } from "react";
 import PostDetail from "../_components/PostDetail";
 import Userbox from "@/app/components/Userbox";
 import prisma from "@/prisma/client";
@@ -41,7 +41,18 @@ const page = async ({ params }: Props) => {
           </div>
         </div>
         <div className="mx-auto ">
-          <PostDetail post={post!} />
+          <Suspense
+            fallback={
+              <div className="h-screen">
+                <div className="flex items-center gap-5">
+                  Loading data...
+                  <span className="loading loading-spinner loading-md"></span>
+                </div>{" "}
+              </div>
+            }
+          >
+            <PostDetail post={post!} />
+          </Suspense>
         </div>
         <div></div>
       </div>

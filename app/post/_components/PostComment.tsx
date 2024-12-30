@@ -101,6 +101,7 @@ const PostComment = ({ post }: Prop) => {
   const [isSubmitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
   const [showNotification, setShowNotification] = useState(false);
+  const [showAlert, setShowAlert] = useState(false);
   const handleShowNotification = () => {
     setShowNotification(true);
   };
@@ -114,12 +115,19 @@ const PostComment = ({ post }: Prop) => {
       setSubmitting(true);
       await axios.post("/api/comments", data);
       setSubmitting(false);
+      setShowAlert(true);
+      setTimeout(() => {
+        setShowAlert(false);
+      }, 3000);
+      setValue("content", "");
+      setEmoji(false);
       // router.push('/issues/list')
       router.refresh();
     } catch (error: any) {
       setSubmitting(false);
       setError("please login first before leave comments");
       setShowNotification(true);
+      setEmoji(false);
       // setSubmitting(false)
       // setError('An unexpected error occurred.')
     }
@@ -127,6 +135,28 @@ const PostComment = ({ post }: Prop) => {
 
   return (
     <div className="w-full">
+      {showAlert && (
+        <div
+          role="alert"
+          className="alert alert-success fixed left-1/2 -translate-x-1/2 top-14 w-96"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-6 w-6 shrink-0 stroke-current"
+            fill="none"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+            />
+          </svg>
+          <span>Your comment has been posted!</span>
+        </div>
+      )}
+
       {showNotification && (
         <NotificationBox message={error} onClose={handleCloseNotification} />
       )}
@@ -161,7 +191,12 @@ const PostComment = ({ post }: Prop) => {
           className="w-full btn btn-neutral text-xl mt-4"
           disabled={isSubmitting}
         >
-          send
+          {isSubmitting && (
+            <>
+              <span className="loading loading-spinner"></span>loading
+            </>
+          )}
+          {!isSubmitting && <span>send</span>}
         </button>
       </form>
       <div>
