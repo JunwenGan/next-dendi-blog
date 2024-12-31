@@ -4,21 +4,22 @@ import Link from "next/link";
 import { Metadata } from "next";
 
 const page = async () => {
-  const posts = await prisma.post.findMany({
-    orderBy: {
-      createAt: "desc",
-    },
-  });
-  if (!posts) {
-    return {
-      notFound: true,
-    };
-  }
-  const postCount = await prisma.post.count();
+  // const posts = await prisma.post.findMany({
+  //   orderBy: {
+  //     createAt: "desc",
+  //   },
+  // });
+  // if (!posts) {
+  //   return {
+  //     notFound: true,
+  //   };
+  // }
+  // const postCount = await prisma.post.count();
 
   return (
     <>
-      <div className="h-screen">
+    <div>11</div>
+      {/* <div className="h-screen">
         <div className="grid md:grid-cols-[400px_1fr] min-h-full  py-20 px-10 bg-bg-japan bg-fixed bg-no-repeat bg-center bg-cover">
           <div className="hidden md:block w-[400px] mx-auto relative">
             <Userbox />
@@ -61,7 +62,7 @@ const page = async () => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
     </>
   );
 };
