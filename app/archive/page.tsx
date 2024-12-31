@@ -9,8 +9,13 @@ const page = async () => {
       createAt: "desc",
     },
   });
+  if (!posts) {
+    return {
+      notFound: true,
+    };
+  }
   const postCount = await prisma.post.count();
-  
+
   return (
     <>
       <div className="h-screen">
@@ -63,7 +68,7 @@ const page = async () => {
 
 export const metadata: Metadata = {
   title: "Post Archive",
-  description: "This is Blog Post Archive."
-}
+  description: "This is Blog Post Archive.",
+};
 
 export default page;
