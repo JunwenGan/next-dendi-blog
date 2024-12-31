@@ -3,7 +3,11 @@ import Userbox from "../components/Userbox";
 import Link from "next/link";
 import { Metadata } from "next";
 
-const page = async () => {
+const page = async ({
+  searchParams,
+}: {
+  searchParams: Promise<{ page: string }>
+}) => {
   const posts = await prisma.post.findMany({
     orderBy: {
       createAt: "desc",
