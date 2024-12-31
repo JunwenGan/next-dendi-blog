@@ -4,7 +4,7 @@ interface Props {
   // targetRef: RefObject<HTMLDivElement | null>;
   leftComponent?: ReactNode;
   rightComponent?: ReactNode;
-  searchParams?: { page: string };
+  searchParams?: Promise<{ page: string }>;
 }
 const HomeBottom = ({ leftComponent = <Userbox />, rightComponent }: Props) => {
   return (

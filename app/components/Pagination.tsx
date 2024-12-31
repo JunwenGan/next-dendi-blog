@@ -14,7 +14,7 @@ interface Props {
 }
 
 const Pagination = ({ itemCount, pageSize, currentPage }: Props) => {
-  const globalRef = useRefContext()?.globalRef!;
+  const globalRef = useRefContext()!.globalRef!;
   const router = useRouter();
   const searchParams = useSearchParams();
 

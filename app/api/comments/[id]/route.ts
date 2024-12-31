@@ -1,15 +1,9 @@
-import authOptions from "@/app/auth/authOptions";
 import prisma from "@/prisma/client";
-import { getServerSession } from "next-auth";
 import { NextRequest, NextResponse } from "next/server";
-
-interface Props {
-  params: { params: { id: string } };
-}
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: any
 ) {
   try {
     const { id } = await params;

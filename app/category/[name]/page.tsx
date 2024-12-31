@@ -3,7 +3,7 @@ import CategorySpecific from "../_components/CategorySpecific";
 import prisma from "@/prisma/client";
 
 interface Prop {
-  params: { name: string };
+  params: Promise<{ name: string }>
 }
 
 const page = async ({ params }: Prop) => {
@@ -16,13 +16,14 @@ const page = async ({ params }: Prop) => {
 };
 
 export async function generateMetadata({ params }: Prop) {
-    const category = await prisma.category.findUnique({
-      where: { name: params.name },
-    });
-    return {
-      title: category?.name,
-      description: "Category of" + category?.name,
-    };
-  }
+  const { name } = await params;
+  const category = await prisma.category.findUnique({
+    where: { name },
+  });
+  return {
+    title: category?.name,
+    description: "Category of" + category?.name,
+  };
+}
 
 export default page;

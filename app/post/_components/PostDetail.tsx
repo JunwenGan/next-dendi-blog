@@ -1,18 +1,12 @@
-import { Post } from "@prisma/client";
-
 import Markdown from "react-markdown";
 
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeSlug from "rehype-slug";
-import { TableOfContents } from "../../components/TableOfContents";
-import { getHeadings } from "../../lib/getHeading";
 import PostComment from "./PostComment";
-import delay from 'delay';
-import { log } from "console";
 
 import {
-  Post as PrismaPost,
   Comment as PrismaComment,
+  Post as PrismaPost,
   User,
 } from "@prisma/client";
 

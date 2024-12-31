@@ -6,7 +6,7 @@ import HomeBottomRight from "./components/HomeBottomRight";
 export default function Home({
   searchParams,
 }: {
-  searchParams: { page: string };
+  searchParams: Promise<{ page: string }>;
 }) {
   // const targetRef = useRef<HTMLDivElement | null>(null);
   // const handleScroll = () => {

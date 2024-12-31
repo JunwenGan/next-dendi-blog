@@ -3,7 +3,7 @@ import PostCardList from "./PostCardList";
 import Pagination from "./Pagination";
 
 interface Prop {
-  searchParams: { page: string };
+  searchParams: Promise<{ page: string }>;
 }
 const HomeBottomRight = async ({ searchParams }: Prop) => {
   const params = await searchParams;

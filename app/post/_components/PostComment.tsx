@@ -1,24 +1,21 @@
 "use client";
 
-import { useActionState, useEffect, useState } from "react";
-import { EmojiClickData } from "emoji-picker-react";
-import dynamic from "next/dynamic";
+import NotificationBox from "@/app/components/NotificationBox";
 import { postCommentSchema } from "@/app/validationShemas";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { format } from "date-fns";
-import { useSession } from "next-auth/react";
-import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
 import {
-  Post as PrismaPost,
   Comment as PrismaComment,
+  Post as PrismaPost,
   User,
 } from "@prisma/client";
+import axios from "axios";
+import { format } from "date-fns";
+import { EmojiClickData } from "emoji-picker-react";
+import { useSession } from "next-auth/react";
+import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
-import AlertComponent from "@/app/components/NotificationBox";
-import NotificationBox from "@/app/components/NotificationBox";
+import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
 
 // Extend the Comment model to include the related User
 interface CommentWithUser extends PrismaComment {
@@ -80,7 +77,7 @@ const PostComment = ({ post }: Prop) => {
         userId: session.user.id,
       });
     }
-  }, [session, post.id]);
+  }, [session, post.id, getValues, reset]);
 
   // emoji Table Status
   const [emoji, setEmoji] = useState(false);
@@ -209,7 +206,11 @@ const PostComment = ({ post }: Prop) => {
                   <div className="flex items-center gap-2 ">
                     <div className="avatar">
                       <div className="w-8 rounded">
-                        <img src={comment.user.image!} className="mx-0 my-0" />
+                        <img
+                          src={comment.user.image!}
+                          className="mx-0 my-0 "
+                          alt="User Avatar"
+                        />
                       </div>
                     </div>
                     <p className="font-semibold">{comment.user.name}</p>

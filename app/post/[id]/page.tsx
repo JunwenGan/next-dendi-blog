@@ -1,14 +1,11 @@
-import HomeBottom from "@/app/HomeBottom";
-import React, { RefObject, Suspense } from "react";
-import PostDetail from "../_components/PostDetail";
-import Userbox from "@/app/components/Userbox";
-import prisma from "@/prisma/client";
-import { cache } from "react";
 import { TableOfContents } from "@/app/components/TableOfContents";
 import { getHeadings } from "@/app/lib/getHeading";
+import prisma from "@/prisma/client";
+import { cache, Suspense } from "react";
+import PostDetail from "../_components/PostDetail";
 
 interface Props {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }
 const fetchPost = cache(async (postId: number) =>
   prisma.post.findUnique({
@@ -61,8 +58,9 @@ const page = async ({ params }: Props) => {
 };
 
 export async function generateMetadata({ params }: Props) {
+  const { id } = await params;
   const post = await prisma.post.findUnique({
-    where: { id: parseInt(params.id) },
+    where: { id: parseInt(id) },
   });
   return {
     title: post?.title,
