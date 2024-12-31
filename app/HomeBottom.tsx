@@ -16,7 +16,7 @@ const HomeBottom = ({ leftComponent = <Userbox />, rightComponent }: Props) => {
         <div className="hidden md:block w-[400px] mx-auto relative">
           {leftComponent}
         </div>
-        <div className="mx-auto ">{rightComponent}</div>
+        <div className="">{rightComponent}</div>
       </div>
     </>
   );

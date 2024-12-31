@@ -43,7 +43,7 @@ const calculateReadingTime = (
 };
 
 const PostDetail = async ({ post }: Prop) => {
-  await delay(2000)
+  // await delay(2000)
   const { content: markdown, createAt, updatedAt, title } = post;
   const totalWord = wordCount(markdown);
   const timeConsumed = calculateReadingTime(totalWord);

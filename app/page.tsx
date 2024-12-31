@@ -1,3 +1,4 @@
+import { Metadata } from "next";
 import Hero from "./Hero";
 import HomeBottom from "./HomeBottom";
 import Footer from "./components/Footer";
@@ -21,4 +22,9 @@ export default function Home({
       {/* <HomeBottom targetRef={targetRef} /> */}
     </>
   );
+}
+
+export const metadata: Metadata = {
+  title: "Dendi - Blog",
+  description: "This is Dendi Blog"
 }

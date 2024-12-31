@@ -60,4 +60,14 @@ const page = async ({ params }: Props) => {
   );
 };
 
+export async function generateMetadata({ params }: Props) {
+  const post = await prisma.post.findUnique({
+    where: { id: parseInt(params.id) },
+  });
+  return {
+    title: post?.title,
+    description: "Details of post" + post?.title,
+  };
+}
+
 export default page;

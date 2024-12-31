@@ -1,6 +1,7 @@
 import prisma from "@/prisma/client";
 import Userbox from "../components/Userbox";
 import Link from "next/link";
+import { Metadata } from "next";
 
 const page = async ({
   searchParams,
@@ -64,5 +65,10 @@ const page = async ({
     </>
   );
 };
+
+export const metadata: Metadata = {
+  title: "Post Archive",
+  description: "This is Blog Post Archive."
+}
 
 export default page;
