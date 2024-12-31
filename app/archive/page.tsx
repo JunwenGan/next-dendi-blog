@@ -3,17 +3,14 @@ import Userbox from "../components/Userbox";
 import Link from "next/link";
 import { Metadata } from "next";
 
-const page = async ({
-  searchParams,
-}: {
-  searchParams: Promise<{ page: string }>
-}) => {
+const page = async () => {
   const posts = await prisma.post.findMany({
     orderBy: {
       createAt: "desc",
     },
   });
   const postCount = await prisma.post.count();
+  
   return (
     <>
       <div className="h-screen">
