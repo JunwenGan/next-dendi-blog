@@ -5,148 +5,168 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import {
-  AiFillFilter,
-  AiFillFolder,
-  AiFillHome,
-  AiOutlineInfoCircle,
+  AiOutlineClose,
   AiOutlineMenu,
 } from "react-icons/ai";
+import { MonogramLogo } from "./Logo";
+
 const links = [
-  {
-    label: "Home",
-    href: "/",
-    icon: AiFillHome,
-  },
-  {
-    label: "Archive",
-    href: "/archive",
-    icon: AiFillFolder,
-  },
-  {
-    label: "Category",
-    href: "/category",
-    icon: AiFillFilter,
-  },
-  // {
-  //   label: "About",
-  //   href: "/about",
-  //   icon: AiOutlineInfoCircle,
-  // },
+  { label: "Home", href: "/" },
+  { label: "Projects", href: "/projects" },
+  { label: "Guestbook", href: "/guestbook" },
+  { label: "Archive", href: "/archive" },
+  { label: "Category", href: "/category" },
 ];
+
 const Navbar = () => {
   const currentPath = usePathname();
   const { status, data: session } = useSession();
-  const [nav, setNav] = useState(false);
-  const handleNav = () => {
-    setNav(!nav);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  // Unified function to check if a link is active
+  const isLinkActive = (href) => {
+    if (href === "/") {
+      return currentPath === "/";
+    }
+    return currentPath?.startsWith(href);
   };
 
   return (
-    <div className="absolute top-0 left-0 w-full px-5 flex items-center mx-auto md:px-20 h-12 justify-between bg-gray-500/75">
-      <AiOutlineMenu
-        size={20}
-        className="block md:hidden"
-        onClick={handleNav}
-      />
-      <h1 className="w-full font-bold text-2xl pl-4 hidden md:block text-white">
-        Dendi Blog
-      </h1>
-      <NavLinks />
-      {status === "loading" && <div>Loading...</div>}
-      {status === "authenticated" && (
-        <div className="flex gap-3">
-          <div className="avatar">
-            <div className="w-8 rounded-full">
-              <img src={session.user.image} alt="User_avatar" />
-            </div>
-          </div>
-          <div className="btn btn-sm btn-neutral">
-            <Link href="/api/auth/signout">sign out</Link>
-          </div>
-        </div>
-      )}
-      {status === "unauthenticated" && (
-        <div className="hidden md:flex gap-3 ">
-          <div className="btn btn-sm ">
-            <Link href="/api/auth/signin">signup</Link>
-          </div>
-          <div className="btn btn-sm btn-neutral">
-            <Link href="/api/auth/signin">login</Link>
-          </div>
-        </div>
-      )}
+    <div className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-5 py-4">
+      {/* Logo - Left */}
+      <MonogramLogo size={36} />
 
-      <div
-        className={
-          nav ? "fixed left-0 top-14 w-[60%] bg-gray-800" : "fixed left-[-100%]"
-        }
-      >
-        <ul className="p-4 text-white text-1xl">
-          {links.map((link) => (
-            <li key={link.href} className="p-4 border-b border-gray-600">
+      {/* Floating Pill Navbar - Center */}
+      <nav className="hidden md:flex items-center bg-gray-900/90 backdrop-blur-md rounded-full px-2 py-1.5 border border-gray-700/50 shadow-lg relative">
+        {links.map((link) => {
+          // Active state: exact match for home, startsWith for other routes
+          const isActive = isLinkActive(link.href);
+          
+          return (
+            <div key={link.href} className="relative">
+              {/* Top Indicator Tab - appears above active link */}
+              {isActive && (
+                <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-7 h-1.5 bg-gray-400/80 rounded-full z-10" />
+              )}
               <Link
                 href={link.href}
-                className={classnames({
-                  // "!text-zinc-900": link.href === currentPath,
-                  "nav-link": true,
-                })}
-                onClick={() => setNav(false)}
+                className={classnames(
+                  "relative px-4 py-2 rounded-full text-sm font-medium transition-all duration-200",
+                  {
+                    "bg-gray-700/80 text-white": isActive,
+                    "text-gray-300 hover:text-white hover:bg-gray-800/50": !isActive,
+                  }
+                )}
               >
                 {link.label}
               </Link>
-            </li>
-          ))}
-          {/* <li className="p-4 border-b border-gray-600">Home</li>
-          <li className="p-4 border-b border-gray-600">Archive</li> */}
-          {status === "unauthenticated" && (
-            <>
-              {" "}
-              <li className="p-4 border-b border-gray-600">
-                {" "}
-                <Link href="/api/auth/signin">signup</Link>
-              </li>
-              <li className="p-4 border-b border-gray-600">
-                {" "}
-                <Link href="/api/auth/signin">login</Link>
-              </li>
-            </>
-          )}
+            </div>
+          );
+        })}
 
-          {/* <li className="p-4 border-b border-gray-600">Category</li>
-          <li className="p-4">About</li> */}
-        </ul>
-      </div>
-    </div>
-  );
-};
-
-const NavLinks = () => {
-  const currentPath = usePathname();
-
-  return (
-    <ul className="hidden md:flex text-white">
-      {links.map((link) => (
-        <li key={link.href} className="p-1 mr-4 flex items-center box-border ">
-          <link.icon
-            color="white"
-            className={classnames({
-              "!text-zinc-900": link.href === currentPath,
-              "mr-2": true,
-              "nav-link": true,
-            })}
-          ></link.icon>
+        {/* Auth Button in Pill */}
+        {status === "authenticated" && (
           <Link
-            href={link.href}
-            className={classnames({
-              "!text-zinc-900": link.href === currentPath,
-              "nav-link": true,
-            })}
+            href="/api/auth/signout"
+            className="ml-1 px-4 py-2 rounded-full text-sm font-medium bg-white/10 text-white hover:bg-white/20 transition-all duration-200"
           >
-            {link.label}
+            Sign out
           </Link>
-        </li>
-      ))}
-    </ul>
+        )}
+
+        {status === "unauthenticated" && (
+          <Link
+            href="/api/auth/signin"
+            className="ml-1 px-4 py-2 rounded-full text-sm font-medium bg-white text-gray-900 hover:bg-gray-200 transition-all duration-200"
+          >
+            Login
+          </Link>
+        )}
+      </nav>
+
+      {/* Right Side - Avatar or Empty */}
+      <div className="flex items-center gap-3">
+        {status === "authenticated" && (
+          <div className="hidden md:block avatar">
+            <div className="w-8 rounded-full ring-2 ring-gray-600">
+              <img src={session.user?.image} alt="Avatar" />
+            </div>
+          </div>
+        )}
+
+        {/* Mobile Menu Button */}
+        <button
+          className="md:hidden text-white p-2"
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+        >
+          {mobileMenuOpen ? <AiOutlineClose size={24} /> : <AiOutlineMenu size={24} />}
+        </button>
+      </div>
+
+      {/* Mobile Menu */}
+      {mobileMenuOpen && (
+        <div className="absolute top-full left-4 right-4 mt-2 bg-gray-900/95 backdrop-blur-md rounded-2xl border border-gray-700/50 shadow-lg md:hidden">
+          <ul className="p-4 space-y-2">
+            {links.map((link) => {
+              const isActive = isLinkActive(link.href);
+              return (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className={classnames(
+                      "block px-4 py-3 rounded-xl text-sm font-medium transition-all",
+                      {
+                        "bg-gray-700/80 text-white": isActive,
+                        "text-gray-300 hover:bg-gray-800/50": !isActive,
+                      }
+                    )}
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              );
+            })}
+
+            {status === "authenticated" && (
+              <>
+                <li className="pt-2 border-t border-gray-700">
+                  <div className="flex items-center gap-3 px-4 py-2 text-gray-300">
+                    <div className="avatar">
+                      <div className="w-6 rounded-full">
+                        <img src={session.user?.image} alt="Avatar" />
+                      </div>
+                    </div>
+                    <span className="text-sm">{session.user?.name}</span>
+                  </div>
+                </li>
+                <li>
+                  <Link
+                    href="/api/auth/signout"
+                    className="block px-4 py-3 rounded-xl text-sm font-medium text-gray-300 hover:bg-gray-800/50"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    Sign out
+                  </Link>
+                </li>
+              </>
+            )}
+
+            {status === "unauthenticated" && (
+              <li className="pt-2 border-t border-gray-700">
+                <Link
+                  href="/api/auth/signin"
+                  className="block px-4 py-3 rounded-xl text-sm font-medium text-center bg-white text-gray-900"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Login
+                </Link>
+              </li>
+            )}
+          </ul>
+        </div>
+      )}
+    </div>
   );
 };
 

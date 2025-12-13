@@ -2,6 +2,7 @@ import prisma from "@/prisma/client";
 import Userbox from "../components/Userbox";
 import Link from "next/link";
 import { Metadata } from "next";
+import { notFound } from "next/navigation";
 
 const page = async () => {
   const posts = await prisma.post.findMany({
@@ -9,10 +10,8 @@ const page = async () => {
       createAt: "desc",
     },
   });
-  if (!posts) {
-    return {
-      notFound: true,
-    };
+  if (!posts || posts.length === 0) {
+    notFound();
   }
   const postCount = await prisma.post.count();
 
