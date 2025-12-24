@@ -107,9 +107,9 @@ export default function GuestbookClient({ initialEntries }: GuestbookClientProps
           animate={{ opacity: 1, y: 0 }}
           className="fixed left-1/2 -translate-x-1/2 top-20 z-50"
         >
-          <Card className="border-green-500 bg-green-50 dark:bg-green-950">
+          <Card className="border-accent-green bg-accent-green/10">
             <CardContent className="pt-6">
-              <p className="text-green-700 dark:text-green-300">
+              <p className="text-accent-green">
                 Your message has been posted!
               </p>
             </CardContent>
@@ -218,5 +218,6 @@ export default function GuestbookClient({ initialEntries }: GuestbookClientProps
     </div>
   );
 }
+
 
 

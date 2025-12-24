@@ -68,7 +68,7 @@ export const MonogramLogo = ({ size = 36 }) => {
   return (
     <Link href="/" className="group">
       <div
-        className="flex items-center justify-center rounded-lg bg-gradient-to-br from-gray-700 to-gray-900 border border-gray-600/50 transition-all duration-300 group-hover:border-gray-500 group-hover:shadow-lg group-hover:shadow-white/5"
+        className="flex items-center justify-center rounded-lg bg-card border border-border shadow-sm transition-all duration-300 group-hover:border-border/80 group-hover:shadow-md group-hover:shadow-foreground/5 text-foreground"
         style={{ width: size, height: size }}
       >
         <svg
@@ -81,7 +81,7 @@ export const MonogramLogo = ({ size = 36 }) => {
           {/* Stylized D and B combined */}
           <path
             d="M4 4V20H10C14 20 17 17 17 14V10C17 7 14 4 10 4H4Z"
-            stroke="white"
+            stroke="currentColor"
             strokeWidth="2"
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -89,7 +89,7 @@ export const MonogramLogo = ({ size = 36 }) => {
           />
           <path
             d="M10 4H16C18.5 4 20 5.5 20 8C20 9.5 19 10.5 18 11C19 11.5 20 12.5 20 14C20 16.5 18.5 18 16 18H10"
-            stroke="white"
+            stroke="currentColor"
             strokeWidth="2"
             strokeLinecap="round"
             strokeLinejoin="round"

@@ -24,6 +24,45 @@
     --input: 214.3 31.8% 91.4%;
     --ring: 222.2 84% 4.9%;
     --radius: 0.5rem;
+
+    /* Aurora/Mesh Gradient Colors - Light Theme (softer pastels) */
+    --aurora-1: rgba(99, 102, 241, 0.15);
+    --aurora-2: rgba(168, 85, 247, 0.12);
+    --aurora-3: rgba(59, 130, 246, 0.12);
+    --aurora-4: rgba(236, 72, 153, 0.12);
+    --aurora-5: rgba(139, 92, 246, 0.10);
+    --aurora-6: rgba(14, 165, 233, 0.12);
+
+    /* Star color */
+    --star-color: rgba(30, 30, 30, 0.6);
+
+    /* Surface colors (for cards, navbars) */
+    --surface: 220 14% 96%;
+    --surface-elevated: 0 0% 100%;
+    --surface-border: 220 13% 91%;
+    --surface-hover: 220 14% 93%;
+
+    /* Accent colors */
+    --accent-pink: 330 81% 60%;
+    --accent-green: 142 71% 45%;
+    --accent-blue: 217 91% 60%;
+
+    /* Loading screen */
+    --loading-bg: #f8fafc;
+    --loading-fg: #0d9488;
+
+    /* Noise texture */
+    --noise-color-1: rgba(0, 0, 0, 0.03);
+    --noise-color-2: rgba(0, 0, 0, 0.02);
+
+    /* Hero Aurora Effects - Light Theme */
+    --hero-top-aurora: rgba(147, 197, 253, 0.1);
+    --hero-aurora-main: radial-gradient(ellipse 60% 18% at 50% 0%, rgba(255, 255, 255, 0.8) 0%, rgba(191, 219, 254, 0.6) 8%, rgba(147, 197, 253, 0.4) 18%, rgba(99, 102, 241, 0.2) 30%, transparent 45%);
+    --hero-aurora-secondary: radial-gradient(ellipse 50% 15% at 50% 0%, rgba(168, 85, 247, 0.4) 0%, rgba(236, 72, 153, 0.3) 12%, rgba(147, 51, 234, 0.2) 25%, transparent 40%);
+    --hero-aurora-core: radial-gradient(ellipse 40% 12% at 50% 0%, rgba(255, 255, 255, 0.7) 0%, rgba(191, 219, 254, 0.5) 10%, rgba(147, 197, 253, 0.3) 20%, rgba(99, 102, 241, 0.2) 30%, transparent 45%);
+    --hero-glow-from: rgba(99, 102, 241, 0.4);
+    --hero-orb-bg: rgba(255, 255, 255, 0.05);
+    --hero-orb-shadow: inset 0 2px 20px #4f46e5, 0 -10px 50px 1px rgba(79, 70, 229, 0.12);
   }
 
   .dark {
@@ -46,12 +85,52 @@
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
     --ring: 212.7 26.8% 83.9%;
+
+    /* Aurora/Mesh Gradient Colors - Dark Theme (vibrant) */
+    --aurora-1: rgba(99, 102, 241, 0.4);
+    --aurora-2: rgba(168, 85, 247, 0.35);
+    --aurora-3: rgba(59, 130, 246, 0.3);
+    --aurora-4: rgba(236, 72, 153, 0.3);
+    --aurora-5: rgba(139, 92, 246, 0.25);
+    --aurora-6: rgba(14, 165, 233, 0.3);
+
+    /* Star color */
+    --star-color: rgba(255, 255, 255, 0.8);
+
+    /* Surface colors (for cards, navbars) */
+    --surface: 224 71% 4%;
+    --surface-elevated: 215 28% 9%;
+    --surface-border: 217 19% 17%;
+    --surface-hover: 215 25% 12%;
+
+    /* Accent colors */
+    --accent-pink: 330 81% 65%;
+    --accent-green: 142 71% 45%;
+    --accent-blue: 217 91% 65%;
+
+    /* Loading screen */
+    --loading-bg: #1c1b2a;
+    --loading-fg: #45d6b5;
+
+    /* Noise texture */
+    --noise-color-1: rgba(255, 255, 255, 0.1);
+    --noise-color-2: rgba(255, 255, 255, 0.05);
+
+    /* Hero Aurora Effects - Dark Theme */
+    --hero-top-aurora: rgba(59, 130, 246, 0.15);
+    --hero-aurora-main: radial-gradient(ellipse 60% 18% at 50% 0%, rgba(255, 255, 255, 1) 0%, rgba(147, 197, 253, 0.9) 8%, rgba(99, 102, 241, 0.7) 18%, rgba(147, 51, 234, 0.4) 30%, transparent 45%);
+    --hero-aurora-secondary: radial-gradient(ellipse 50% 15% at 50% 0%, rgba(168, 85, 247, 0.8) 0%, rgba(236, 72, 153, 0.6) 12%, rgba(147, 51, 234, 0.4) 25%, transparent 40%);
+    --hero-aurora-core: radial-gradient(ellipse 40% 12% at 50% 0%, rgba(255, 255, 255, 1) 0%, rgba(191, 219, 254, 0.9) 10%, rgba(147, 197, 253, 0.7) 20%, rgba(99, 102, 241, 0.5) 30%, transparent 45%);
+    --hero-glow-from: rgba(255, 255, 255, 1);
+    --hero-orb-bg: rgba(0, 0, 0, 1);
+    --hero-orb-shadow: inset 0 2px 20px #fff, 0 -10px 50px 1px rgba(255, 255, 255, 0.49);
   }
 }
 
 @layer base {
   * {
     @apply border-border;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
   }
   body {
     @apply bg-background text-foreground;
@@ -82,20 +161,20 @@ html {
   opacity: 0.4;
   z-index: 10000;
   mix-blend-mode: overlay;
-  background-image: 
+  background-image:
     repeating-linear-gradient(
       0deg,
-      rgba(255, 255, 255, 0.1) 0px,
+      var(--noise-color-1) 0px,
       transparent 1px,
       transparent 1px,
-      rgba(255, 255, 255, 0.05) 2px
+      var(--noise-color-2) 2px
     ),
     repeating-linear-gradient(
       90deg,
-      rgba(255, 255, 255, 0.1) 0px,
+      var(--noise-color-1) 0px,
       transparent 1px,
       transparent 1px,
-      rgba(255, 255, 255, 0.05) 2px
+      var(--noise-color-2) 2px
     );
   background-size: 2px 2px;
 }

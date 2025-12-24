@@ -58,7 +58,7 @@ export default function TechStackScroller({
           return (
             <div
               key={`${tech.name}-${index}`}
-              className="flex-shrink-0 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-gray-800/50 border border-gray-700/50 text-gray-300 hover:bg-gray-800 hover:border-gray-600 hover:text-white hover:scale-105 transition-all duration-200 cursor-default"
+              className="flex-shrink-0 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-muted/50 border border-border/50 text-muted-foreground hover:bg-muted hover:border-border hover:text-foreground hover:scale-105 transition-all duration-200 cursor-default"
             >
               {hasIconPath ? (
                 <svg

@@ -38,38 +38,30 @@ The team decided to:
 `;
 
   return (
-    <div className="mx-auto py-16 px-4 bg-white w-full shadow border mb-5">
+    <div className="mx-auto py-16 px-4 bg-card w-full shadow border border-border mb-5">
       <div className="container mx-auto px-10">
         <div className="flex place-content-center flex-col">
-          <p className="font-bold text-center text-2xl">{title}</p>
+          <p className="font-bold text-center text-2xl text-foreground">{title}</p>
           <div className="w-[75%] mx-auto stats stats-vertical lg:stats-horizontal shadow">
             <div className="stat">
-              <div className="stat-title">Created At</div>
-              <div className="stat-value text-xl">
+              <div className="stat-title text-muted-foreground">Created At</div>
+              <div className="stat-value text-xl text-foreground">
                 {createAt.toDateString()}
               </div>
             </div>
             <div className="stat">
-              <div className="stat-title">Updated At</div>
-              <div className="stat-value text-xl">
+              <div className="stat-title text-muted-foreground">Updated At</div>
+              <div className="stat-value text-xl text-foreground">
                 {updatedAt.toDateString()}
               </div>
             </div>
-            {/* <div className="stat">
-              <div className="stat-title">Word Count</div>
-              <div className="stat-value text-xl">300</div>
-            </div>
-            <div className="stat">
-              <div className="stat-title">Time consumed</div>
-              <div className="stat-value text-xl">10mins</div>
-            </div> */}
           </div>
         </div>
         <div className="mt-5 prose max-w-full">
           <div className="max-h-96 overflow-hidden relative">
             <Markdown>{content}</Markdown>
-            {/* {content} */}Ï{/* Gradient Overlay */}
-            <div className="absolute bottom-0 left-0 right-0 h-10 bg-gradient-to-t from-white to-transparent"></div>
+            {/* Gradient Overlay */}
+            <div className="absolute bottom-0 left-0 right-0 h-10 bg-gradient-to-t from-card to-transparent"></div>
           </div>
           <button className="btn btn-outline mt-3 block text-sm">
             <Link href={`/post/${id}`} className="text-inherit no-underline">Read More</Link>

@@ -9,7 +9,7 @@ const MeshGradient = () => {
       <motion.div
         className="absolute top-0 left-0 w-[600px] h-[600px] rounded-full blur-[120px]"
         style={{
-          background: "radial-gradient(circle, rgba(99, 102, 241, 0.4) 0%, transparent 70%)",
+          background: "radial-gradient(circle, var(--aurora-1) 0%, transparent 70%)",
         }}
         animate={{
           x: [-100, 100, -100],
@@ -27,7 +27,7 @@ const MeshGradient = () => {
       <motion.div
         className="absolute right-0 w-[500px] h-[500px] rounded-full blur-[100px]"
         style={{
-          background: "radial-gradient(circle, rgba(168, 85, 247, 0.35) 0%, transparent 70%)",
+          background: "radial-gradient(circle, var(--aurora-2) 0%, transparent 70%)",
         }}
         animate={{
           x: [0, -80, 0],
@@ -46,7 +46,7 @@ const MeshGradient = () => {
       <motion.div
         className="absolute top-1/3 left-1/3 w-[700px] h-[700px] rounded-full blur-[140px]"
         style={{
-          background: "radial-gradient(circle, rgba(59, 130, 246, 0.3) 0%, transparent 70%)",
+          background: "radial-gradient(circle, var(--aurora-3) 0%, transparent 70%)",
         }}
         animate={{
           x: [-50, 50, -50],
@@ -65,7 +65,7 @@ const MeshGradient = () => {
       <motion.div
         className="absolute bottom-0 left-0 w-[550px] h-[550px] rounded-full blur-[110px]"
         style={{
-          background: "radial-gradient(circle, rgba(236, 72, 153, 0.3) 0%, transparent 70%)",
+          background: "radial-gradient(circle, var(--aurora-4) 0%, transparent 70%)",
         }}
         animate={{
           x: [0, 100, 0],
@@ -84,7 +84,7 @@ const MeshGradient = () => {
       <motion.div
         className="absolute bottom-0 right-0 w-[650px] h-[650px] rounded-full blur-[130px]"
         style={{
-          background: "radial-gradient(circle, rgba(139, 92, 246, 0.25) 0%, transparent 70%)",
+          background: "radial-gradient(circle, var(--aurora-5) 0%, transparent 70%)",
         }}
         animate={{
           x: [-80, 0, -80],
@@ -103,7 +103,7 @@ const MeshGradient = () => {
       <motion.div
         className="absolute top-1/2 right-1/4 w-[480px] h-[480px] rounded-full blur-[100px]"
         style={{
-          background: "radial-gradient(circle, rgba(14, 165, 233, 0.3) 0%, transparent 70%)",
+          background: "radial-gradient(circle, var(--aurora-6) 0%, transparent 70%)",
         }}
         animate={{
           x: [0, -60, 0],

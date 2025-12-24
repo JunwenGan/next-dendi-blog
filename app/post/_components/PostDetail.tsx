@@ -45,30 +45,30 @@ const PostDetail = async ({ post }: Prop) => {
   // const headings = await getHeadings(markdown!);
 
   return (
-    <div className="mx-auto py-16 px-4 bg-white w-full shadow border">
+    <div className="mx-auto py-16 px-4 bg-card w-full shadow border border-border">
       <div className="container mx-auto px-10">
         <div className="flex place-content-center flex-col">
-          <p className="font-bold text-center text-2xl">{title}</p>
+          <p className="font-bold text-center text-2xl text-foreground">{title}</p>
           <div className="w-[75%] mx-auto stats stats-vertical lg:stats-horizontal shadow">
             <div className="stat">
-              <div className="stat-title">Created At</div>
-              <div className="stat-value text-xl">
+              <div className="stat-title text-muted-foreground">Created At</div>
+              <div className="stat-value text-xl text-foreground">
                 {createAt.toLocaleDateString()}
               </div>
             </div>
             <div className="stat">
-              <div className="stat-title">Updated At</div>
-              <div className="stat-value text-xl">
+              <div className="stat-title text-muted-foreground">Updated At</div>
+              <div className="stat-value text-xl text-foreground">
                 {updatedAt.toLocaleDateString()}
               </div>
             </div>
             <div className="stat">
-              <div className="stat-title">Word Count</div>
-              <div className="stat-value text-xl">{totalWord}</div>
+              <div className="stat-title text-muted-foreground">Word Count</div>
+              <div className="stat-value text-xl text-foreground">{totalWord}</div>
             </div>
             <div className="stat">
-              <div className="stat-title">Time consumed</div>
-              <div className="stat-value text-xl">{timeConsumed} mins</div>
+              <div className="stat-title text-muted-foreground">Time consumed</div>
+              <div className="stat-value text-xl text-foreground">{timeConsumed} mins</div>
             </div>
           </div>
         </div>

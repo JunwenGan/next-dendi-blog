@@ -44,7 +44,7 @@ const itemVariants = {
 
 export default function BentoGrid({ featuredProject }: BentoGridProps) {
   return (
-    <section className="relative bg-black min-h-screen overflow-hidden">
+    <section className="relative bg-background min-h-screen overflow-hidden">
       {/* Mesh Gradient Background - Morphing blobs */}
       <MeshGradient />
       
@@ -61,15 +61,15 @@ export default function BentoGrid({ featuredProject }: BentoGridProps) {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
         {/* Collaboration Card - Left */}
         <motion.div variants={itemVariants} className="md:col-span-1">
-          <Card className="h-full bg-gray-900/50 border-gray-800 hover:border-gray-700 transition-all duration-300 backdrop-blur-sm hover:shadow-lg hover:shadow-pink-500/10">
+          <Card className="h-full bg-card/50 border-border hover:border-border/80 transition-all duration-300 backdrop-blur-sm hover:shadow-lg hover:shadow-accent-pink/10">
             <CardHeader>
               <div className="flex items-center gap-2 mb-2">
-                <Heart className="h-5 w-5 text-pink-400" fill="currentColor" />
+                <Heart className="h-5 w-5 text-accent-pink" fill="currentColor" />
               </div>
-              <CardDescription className="text-xs uppercase tracking-wider text-gray-500 mb-2">
+              <CardDescription className="text-xs uppercase tracking-wider text-muted-foreground mb-2">
                 COLLABORATION
               </CardDescription>
-              <CardTitle className="text-lg text-white">
+              <CardTitle className="text-lg text-foreground">
                 I prioritize client collaboration, fostering open communication
               </CardTitle>
             </CardHeader>
@@ -80,11 +80,11 @@ export default function BentoGrid({ featuredProject }: BentoGridProps) {
         <motion.div variants={itemVariants} className="md:col-span-1 flex items-center justify-center">
           <div className="relative">
             {/* Decorative circles */}
-            <div className="absolute -top-4 -left-4 w-32 h-32 rounded-full bg-gray-800/30 border border-gray-700/50 blur-sm"></div>
-            <div className="absolute -bottom-4 -right-4 w-28 h-28 rounded-full bg-gray-800/30 border border-gray-700/50 blur-sm"></div>
+            <div className="absolute -top-4 -left-4 w-32 h-32 rounded-full bg-muted/30 border border-border/50 blur-sm"></div>
+            <div className="absolute -bottom-4 -right-4 w-28 h-28 rounded-full bg-muted/30 border border-border/50 blur-sm"></div>
             {/* Profile picture */}
             <div className="relative w-24 h-24 rounded-full bg-gradient-to-br from-purple-500 to-blue-500 p-0.5">
-              <div className="w-full h-full rounded-full bg-gray-800 flex items-center justify-center">
+              <div className="w-full h-full rounded-full bg-card flex items-center justify-center">
                 <span className="text-3xl">👤</span>
               </div>
             </div>
@@ -101,29 +101,29 @@ export default function BentoGrid({ featuredProject }: BentoGridProps) {
           variants={itemVariants}
           className="md:col-span-2 md:row-span-1"
         >
-          <Card className="h-full bg-gray-900/50 border-gray-800 hover:border-gray-700 transition-all duration-300 backdrop-blur-sm hover:shadow-lg hover:shadow-purple-500/10">
+          <Card className="h-full bg-card/50 border-border hover:border-border/80 transition-all duration-300 backdrop-blur-sm hover:shadow-lg hover:shadow-purple-500/10">
             <CardHeader className="pb-3">
               <div className="flex items-center gap-2 mb-2">
-                <Badge variant="secondary" className="bg-green-500/20 text-green-400 border-green-500/30">Available for work</Badge>
+                <Badge variant="secondary" className="bg-accent-green/20 text-accent-green border-accent-green/30">Available for work</Badge>
               </div>
-              <CardTitle className="text-3xl md:text-4xl text-white">
+              <CardTitle className="text-3xl md:text-4xl text-foreground">
                 Hello, I&apos;m Dendi
               </CardTitle>
-              <CardDescription className="text-lg text-gray-400">
+              <CardDescription className="text-lg text-muted-foreground">
                 Full Stack Developer & Problem Solver
               </CardDescription>
             </CardHeader>
             <CardContent className="pt-0">
-              <p className="text-gray-300 mb-4">
+              <p className="text-muted-foreground mb-4">
                 I build modern web applications with a focus on performance,
                 user experience, and clean code. Passionate about turning ideas
                 into seamless digital experiences.
               </p>
               <div className="flex gap-2">
-                <Button asChild variant="outline" className="border-gray-700 text-gray-300 hover:bg-gray-800 hover:text-white">
+                <Button asChild variant="outline" className="border-border text-muted-foreground hover:bg-muted hover:text-foreground">
                   <Link href="/projects">View Projects</Link>
                 </Button>
-                <Button asChild variant="outline" className="border-gray-700 text-gray-300 hover:bg-gray-800 hover:text-white">
+                <Button asChild variant="outline" className="border-border text-muted-foreground hover:bg-muted hover:text-foreground">
                   <Link href="/guestbook">Guestbook</Link>
                 </Button>
               </div>
@@ -133,9 +133,9 @@ export default function BentoGrid({ featuredProject }: BentoGridProps) {
 
         {/* Box 2: Technology Stack Scrolling Section - Top Right, 1 column, 2 rows */}
         <motion.div variants={itemVariants} className="md:col-span-1 md:row-span-2">
-          <Card className="h-full bg-gray-900/50 border-gray-800 hover:border-gray-700 transition-all duration-300 backdrop-blur-sm hover:shadow-lg hover:shadow-purple-500/10">
+          <Card className="h-full bg-card/50 border-border hover:border-border/80 transition-all duration-300 backdrop-blur-sm hover:shadow-lg hover:shadow-purple-500/10">
             <CardHeader className="pb-3">
-              <CardTitle className="text-2xl md:text-3xl lg:text-4xl text-white font-serif leading-[1.15]" style={{ fontFamily: 'var(--font-cormorant), serif', fontWeight: 400, letterSpacing: '0.01em', fontStyle: 'normal' }}>
+              <CardTitle className="text-2xl md:text-3xl lg:text-4xl text-foreground font-serif leading-[1.15]" style={{ fontFamily: 'var(--font-cormorant), serif', fontWeight: 400, letterSpacing: '0.01em', fontStyle: 'normal' }}>
                 Passionate about cutting-edge technologies
               </CardTitle>
             </CardHeader>
@@ -164,18 +164,18 @@ export default function BentoGrid({ featuredProject }: BentoGridProps) {
 
         {/* Box 3: Time Zone Communications - Left, 1 column, 2 rows */}
         <motion.div variants={itemVariants} className="md:col-span-1 md:row-span-2">
-          <Card className="h-full bg-gray-900/50 border-gray-800 hover:border-gray-700 transition-all duration-300 backdrop-blur-sm hover:shadow-lg hover:shadow-blue-500/10">
+          <Card className="h-full bg-card/50 border-border hover:border-border/80 transition-all duration-300 backdrop-blur-sm hover:shadow-lg hover:shadow-accent-blue/10">
             <CardHeader className="pb-3">
-              <CardTitle className="text-white">I&apos;m very flexible with time zone communications</CardTitle>
+              <CardTitle className="text-foreground">I&apos;m very flexible with time zone communications</CardTitle>
             </CardHeader>
             <CardContent className="space-y-3 pt-0">
               <div className="flex flex-wrap gap-2">
-                <Badge variant="outline" className="px-3 py-1.5 border-gray-700 text-gray-300">🇬🇧 UK</Badge>
-                <Badge variant="outline" className="px-3 py-1.5 border-gray-700 text-gray-300 bg-gray-800/50">🇮🇳 India</Badge>
-                <Badge variant="outline" className="px-3 py-1.5 border-gray-700 text-gray-300">🇺🇸 USA</Badge>
+                <Badge variant="outline" className="px-3 py-1.5 border-border text-muted-foreground">🇬🇧 UK</Badge>
+                <Badge variant="outline" className="px-3 py-1.5 border-border text-muted-foreground bg-muted/50">🇮🇳 India</Badge>
+                <Badge variant="outline" className="px-3 py-1.5 border-border text-muted-foreground">🇺🇸 USA</Badge>
               </div>
               <div className="mt-6 flex items-center justify-center">
-                <div className="w-32 h-32 rounded-full border-2 border-gray-700/50 flex items-center justify-center bg-gradient-to-br from-blue-500/20 to-purple-500/20">
+                <div className="w-32 h-32 rounded-full border-2 border-border/50 flex items-center justify-center bg-gradient-to-br from-blue-500/20 to-purple-500/20">
                   <span className="text-4xl">🌍</span>
                 </div>
               </div>
@@ -185,15 +185,15 @@ export default function BentoGrid({ featuredProject }: BentoGridProps) {
 
         {/* Box 4: Let's Work Together - Second Row, Right */}
         <motion.div variants={itemVariants} className="md:col-span-1 md:row-span-1">
-          <Card className="h-full bg-gray-900/50 border-gray-800 hover:border-gray-700 transition-all duration-300 backdrop-blur-sm hover:shadow-lg hover:shadow-indigo-500/10">
+          <Card className="h-full bg-card/50 border-border hover:border-border/80 transition-all duration-300 backdrop-blur-sm hover:shadow-lg hover:shadow-indigo-500/10">
             <CardHeader className="pb-3">
-              <CardTitle className="text-white">Let&apos;s work together on your next project</CardTitle>
+              <CardTitle className="text-foreground">Let&apos;s work together on your next project</CardTitle>
             </CardHeader>
             <CardContent className="pt-0">
               <Button
                 asChild
                 variant="outline"
-                className="w-full justify-start border-gray-700 text-gray-300 hover:bg-gray-800 hover:text-white hover:border-gray-600"
+                className="w-full justify-start border-border text-muted-foreground hover:bg-muted hover:text-foreground hover:border-border/80"
               >
                 <a href="mailto:hello@example.com" className="flex items-center gap-2">
                   <span>✉️</span>
@@ -206,14 +206,14 @@ export default function BentoGrid({ featuredProject }: BentoGridProps) {
 
         {/* Box 5: Websites that Impact - Second Row, Right, spans 2 columns */}
         <motion.div variants={itemVariants} className="md:col-span-2 md:row-span-1">
-          <Card className="h-full bg-gray-900/50 border-gray-800 hover:border-gray-700 transition-all duration-300 backdrop-blur-sm hover:shadow-lg hover:shadow-blue-500/10">
+          <Card className="h-full bg-card/50 border-border hover:border-border/80 transition-all duration-300 backdrop-blur-sm hover:shadow-lg hover:shadow-accent-blue/10">
             <CardHeader className="pb-3">
-              <CardTitle className="text-white">
-                Websites that <span className="text-blue-400">Impact.</span>
+              <CardTitle className="text-foreground">
+                Websites that <span className="text-accent-blue">Impact.</span>
               </CardTitle>
             </CardHeader>
             <CardContent className="pt-0">
-              <div className="relative bg-gray-800/50 rounded-lg p-4 border border-gray-700/50 mb-4">
+              <div className="relative bg-muted/50 rounded-lg p-4 border border-border/50 mb-4">
                 {/* Browser Window Style */}
                 <div className="flex items-center gap-2 mb-3">
                   <div className="flex gap-1.5">
@@ -221,24 +221,24 @@ export default function BentoGrid({ featuredProject }: BentoGridProps) {
                     <div className="w-3 h-3 rounded-full bg-yellow-500/50"></div>
                     <div className="w-3 h-3 rounded-full bg-green-500/50"></div>
                   </div>
-                  <div className="flex-1 bg-gray-900/50 rounded px-2 py-1 flex items-center gap-2">
-                    <span className="text-xs text-gray-500">🔒</span>
-                    <span className="text-xs text-gray-400">https://example.com</span>
+                  <div className="flex-1 bg-background/50 rounded px-2 py-1 flex items-center gap-2">
+                    <span className="text-xs text-muted-foreground">🔒</span>
+                    <span className="text-xs text-muted-foreground">https://example.com</span>
                   </div>
                 </div>
-                <div className="bg-gray-900/30 rounded p-4 min-h-[100px] flex items-center justify-center">
+                <div className="bg-background/30 rounded p-4 min-h-[100px] flex items-center justify-center">
                   <div className="grid grid-cols-4 gap-2 opacity-30">
                     {Array.from({ length: 16 }).map((_, i) => (
-                      <div key={i} className="w-full h-8 bg-gray-700 rounded"></div>
+                      <div key={i} className="w-full h-8 bg-muted rounded"></div>
                     ))}
                   </div>
                 </div>
               </div>
               <div className="flex gap-2">
-                <Button variant="default" className="bg-white text-gray-900 hover:bg-gray-200">
+                <Button variant="default" className="bg-foreground text-background hover:bg-foreground/90">
                   Start →
                 </Button>
-                <Button variant="outline" className="border-gray-700 text-gray-300 hover:bg-gray-800 hover:text-white">
+                <Button variant="outline" className="border-border text-muted-foreground hover:bg-muted hover:text-foreground">
                   Details
                 </Button>
               </div>

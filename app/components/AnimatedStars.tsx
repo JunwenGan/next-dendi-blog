@@ -24,7 +24,7 @@ const AnimatedStars = () => {
       const baseY = Math.random() * 100;
       const speed = Math.random() * 0.5 + 0.2; // Random speed
       const angle = Math.random() * Math.PI * 2; // Random direction in radians
-      
+
       return {
         id: i,
         x: baseX,
@@ -44,13 +44,14 @@ const AnimatedStars = () => {
       {stars.map((star) => (
         <motion.div
           key={star.id}
-          className="absolute rounded-full bg-white"
+          className="absolute rounded-full"
           style={{
             left: `${star.x}%`,
             top: `${star.y}%`,
             width: `${star.size}px`,
             height: `${star.size}px`,
             opacity: star.opacity,
+            backgroundColor: "var(--star-color)",
           }}
           animate={{
             x: [0, star.directionX, star.directionX * 0.5, -star.directionX * 0.5, 0],
