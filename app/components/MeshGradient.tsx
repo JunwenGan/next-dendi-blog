@@ -3,13 +3,20 @@
 import { motion } from "framer-motion";
 
 const MeshGradient = () => {
+  // GPU optimization styles
+  const gpuStyles = {
+    transform: "translateZ(0)",
+    backfaceVisibility: "hidden" as const,
+  };
+
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none z-[1]">
       {/* Blob 1 - Top Left */}
       <motion.div
-        className="absolute top-0 left-0 w-[600px] h-[600px] rounded-full blur-[120px]"
+        className="absolute top-0 left-0 w-[600px] h-[600px] rounded-full blur-[70px] will-change-transform"
         style={{
           background: "radial-gradient(circle, var(--aurora-1) 0%, transparent 70%)",
+          ...gpuStyles,
         }}
         animate={{
           x: [-100, 100, -100],
@@ -25,9 +32,10 @@ const MeshGradient = () => {
 
       {/* Blob 2 - Top Right */}
       <motion.div
-        className="absolute right-0 w-[500px] h-[500px] rounded-full blur-[100px]"
+        className="absolute right-0 w-[500px] h-[500px] rounded-full blur-[60px] will-change-transform"
         style={{
           background: "radial-gradient(circle, var(--aurora-2) 0%, transparent 70%)",
+          ...gpuStyles,
         }}
         animate={{
           x: [0, -80, 0],
@@ -44,9 +52,10 @@ const MeshGradient = () => {
 
       {/* Blob 3 - Center */}
       <motion.div
-        className="absolute top-1/3 left-1/3 w-[700px] h-[700px] rounded-full blur-[140px]"
+        className="absolute top-1/3 left-1/3 w-[700px] h-[700px] rounded-full blur-[80px] will-change-transform"
         style={{
           background: "radial-gradient(circle, var(--aurora-3) 0%, transparent 70%)",
+          ...gpuStyles,
         }}
         animate={{
           x: [-50, 50, -50],
@@ -63,9 +72,10 @@ const MeshGradient = () => {
 
       {/* Blob 4 - Bottom Left */}
       <motion.div
-        className="absolute bottom-0 left-0 w-[550px] h-[550px] rounded-full blur-[110px]"
+        className="absolute bottom-0 left-0 w-[550px] h-[550px] rounded-full blur-[65px] will-change-transform"
         style={{
           background: "radial-gradient(circle, var(--aurora-4) 0%, transparent 70%)",
+          ...gpuStyles,
         }}
         animate={{
           x: [0, 100, 0],
@@ -82,9 +92,10 @@ const MeshGradient = () => {
 
       {/* Blob 5 - Bottom Right */}
       <motion.div
-        className="absolute bottom-0 right-0 w-[650px] h-[650px] rounded-full blur-[130px]"
+        className="absolute bottom-0 right-0 w-[650px] h-[650px] rounded-full blur-[75px] will-change-transform"
         style={{
           background: "radial-gradient(circle, var(--aurora-5) 0%, transparent 70%)",
+          ...gpuStyles,
         }}
         animate={{
           x: [-80, 0, -80],
@@ -101,9 +112,10 @@ const MeshGradient = () => {
 
       {/* Blob 6 - Middle Right */}
       <motion.div
-        className="absolute top-1/2 right-1/4 w-[480px] h-[480px] rounded-full blur-[100px]"
+        className="absolute top-1/2 right-1/4 w-[480px] h-[480px] rounded-full blur-[60px] will-change-transform"
         style={{
           background: "radial-gradient(circle, var(--aurora-6) 0%, transparent 70%)",
+          ...gpuStyles,
         }}
         animate={{
           x: [0, -60, 0],

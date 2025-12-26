@@ -1,14 +1,16 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card";
 import { Badge } from "./ui/badge";
 import { Button } from "./ui/button";
-import { Github, Linkedin, ExternalLink, Heart } from "lucide-react";
+import { Github, Linkedin, ExternalLink, Heart, Copy, Check } from "lucide-react";
 import Link from "next/link";
 import MeshGradient from "./MeshGradient";
 import TechStackScroller from "./TechStackScroller";
 import { techRow1, techRow2, techRow3 } from "@/app/lib/technologies";
+import confetti from "canvas-confetti";
 
 interface BentoGridProps {
   featuredProject?: {
@@ -43,6 +45,29 @@ const itemVariants = {
 };
 
 export default function BentoGrid({ featuredProject }: BentoGridProps) {
+  const [copied, setCopied] = useState(false);
+  const email = "junonegan@gmail.com";
+
+  const copyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText(email);
+      setCopied(true);
+
+      // Trigger confetti celebration
+      confetti({
+        particleCount: 100,
+        spread: 70,
+        origin: { y: 0.6 },
+        colors: ['#6366f1', '#a855f7', '#ec4899', '#3b82f6', '#10b981'],
+      });
+
+      // Reset copied state after 2 seconds
+      setTimeout(() => setCopied(false), 2000);
+    } catch (err) {
+      console.error('Failed to copy email:', err);
+    }
+  };
+
   return (
     <section className="relative bg-background min-h-screen overflow-hidden">
       {/* Mesh Gradient Background - Morphing blobs */}
@@ -135,7 +160,7 @@ export default function BentoGrid({ featuredProject }: BentoGridProps) {
         <motion.div variants={itemVariants} className="md:col-span-1 md:row-span-2">
           <Card className="h-full bg-card/50 border-border hover:border-border/80 transition-all duration-300 backdrop-blur-sm hover:shadow-lg hover:shadow-purple-500/10">
             <CardHeader className="pb-3">
-              <CardTitle className="text-2xl md:text-3xl lg:text-4xl text-foreground font-serif leading-[1.15]" style={{ fontFamily: 'var(--font-cormorant), serif', fontWeight: 400, letterSpacing: '0.01em', fontStyle: 'normal' }}>
+              <CardTitle className="text-xl md:text-2xl lg:text-3xl text-foreground font-serif leading-[1.15] text-center" style={{ fontFamily: 'var(--font-cormorant), serif', fontWeight: 400, letterSpacing: '0.01em', fontStyle: 'normal' }}>
                 Passionate about cutting-edge technologies
               </CardTitle>
             </CardHeader>
@@ -144,19 +169,19 @@ export default function BentoGrid({ featuredProject }: BentoGridProps) {
               <TechStackScroller
                 technologies={techRow1}
                 direction="right"
-                speed={5}
+                speed={15}
               />
               {/* Row 2: Scroll left to right */}
               <TechStackScroller
                 technologies={techRow2}
                 direction="left"
-                speed={5}
+                speed={15}
               />
               {/* Row 3: Scroll right to left */}
               <TechStackScroller
                 technologies={techRow3}
                 direction="right"
-                speed={5}
+                speed={15}
               />
             </CardContent>
           </Card>
@@ -185,20 +210,43 @@ export default function BentoGrid({ featuredProject }: BentoGridProps) {
 
         {/* Box 4: Let's Work Together - Second Row, Right */}
         <motion.div variants={itemVariants} className="md:col-span-1 md:row-span-1">
-          <Card className="h-full bg-card/50 border-border hover:border-border/80 transition-all duration-300 backdrop-blur-sm hover:shadow-lg hover:shadow-indigo-500/10">
-            <CardHeader className="pb-3">
-              <CardTitle className="text-foreground">Let&apos;s work together on your next project</CardTitle>
+          <Card className="h-full bg-card/50 border-border hover:border-border/80 transition-all duration-300 backdrop-blur-sm hover:shadow-lg hover:shadow-indigo-500/10 flex flex-col justify-center">
+            <CardHeader className="pb-4 pt-8 px-8">
+              <CardTitle className="text-shimmer text-xl md:text-2xl text-center leading-relaxed">
+                Let&apos;s work together on your next project
+              </CardTitle>
             </CardHeader>
-            <CardContent className="pt-0">
+            <CardContent className="pt-0 pb-8 px-8">
               <Button
-                asChild
                 variant="outline"
-                className="w-full justify-start border-border text-muted-foreground hover:bg-muted hover:text-foreground hover:border-border/80"
+                onClick={copyEmail}
+                className="w-full justify-center border-border text-muted-foreground hover:bg-muted hover:text-foreground hover:border-border/80 transition-all duration-300"
               >
-                <a href="mailto:hello@example.com" className="flex items-center gap-2">
-                  <span>✉️</span>
-                  hello@example.com
-                </a>
+                <AnimatePresence mode="wait">
+                  {copied ? (
+                    <motion.span
+                      key="copied"
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.8 }}
+                      className="flex items-center gap-2"
+                    >
+                      <Check className="w-4 h-4" />
+                      Copied to clipboard!
+                    </motion.span>
+                  ) : (
+                    <motion.span
+                      key="copy"
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.8 }}
+                      className="flex items-center gap-2"
+                    >
+                      <Copy className="w-4 h-4" />
+                      {email}
+                    </motion.span>
+                  )}
+                </AnimatePresence>
               </Button>
             </CardContent>
           </Card>

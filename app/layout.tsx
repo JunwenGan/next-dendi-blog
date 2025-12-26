@@ -10,6 +10,7 @@ import { RefProvider } from "./components/RefProvider";
 import AuthProvider from "./auth/Provider";
 import QueryClientProvider from "./QueryClientProvider";
 import LoadingScreen from "./components/LoadingScreen";
+import { ThemeProvider } from "next-themes";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -45,18 +46,20 @@ export default function RootLayout({
     return () => clearTimeout(timer);
   }, []);
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${cormorantGaramond.variable} antialiased`}
       >
-        <QueryClientProvider>
-          <AuthProvider>
-            <RefProvider>
-              <Navbar />
-              {children}
-            </RefProvider>
-          </AuthProvider>
-        </QueryClientProvider>
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
+          <QueryClientProvider>
+            <AuthProvider>
+              <RefProvider>
+                <Navbar />
+                {children}
+              </RefProvider>
+            </AuthProvider>
+          </QueryClientProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

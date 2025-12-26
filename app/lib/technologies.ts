@@ -34,6 +34,13 @@ const technologyIcons: Record<string, { iconSlug: string; fallbackIcon?: LucideI
   "AWS RDS": { iconSlug: "siAmazonrds", fallbackIcon: Database }, // Fallback to Database icon
 };
 
+// Color overrides for icons with black brand colors (invisible on dark backgrounds)
+const colorOverrides: Record<string, string> = {
+  siNextdotjs: "#FFFFFF",
+  siGithub: "#FFFFFF",
+  siVercel: "#FFFFFF",
+};
+
 // All technologies from the custom list
 const allTechnologies: string[] = [
   "React",
@@ -74,21 +81,23 @@ export function getIconData(iconKey: string): { path: string; title: string; hex
   try {
     const key = iconKey as keyof typeof simpleIcons;
     const icon = simpleIcons[key];
-    
+
     if (icon && typeof icon === 'object') {
       // Check if it has the expected structure
       if ('path' in icon && typeof (icon as any).path === 'string') {
+        // Use color override if available, otherwise use brand color
+        const hex = colorOverrides[iconKey] || `#${(icon as any).hex}` || "#FFFFFF";
         return {
           path: (icon as any).path,
           title: (icon as any).title || iconKey,
-          hex: (icon as any).hex || "#000000",
+          hex,
         };
       }
     }
   } catch (error) {
     console.warn(`Icon not found for key: ${iconKey}`, error);
   }
-  
+
   // Fallback - return empty path if icon not found
   return { path: "", title: iconKey, hex: "#FFFFFF" };
 }
