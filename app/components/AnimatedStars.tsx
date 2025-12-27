@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useMemo } from "react";
+import { useState, useEffect } from "react";
 
 interface Star {
   id: number;
@@ -16,27 +16,30 @@ interface Star {
 }
 
 const AnimatedStars = () => {
-  // Generate fewer stars with random properties
-  const stars = useMemo(() => {
-    const starCount = 25; // Reduced number of stars
-    return Array.from({ length: starCount }, (_, i) => {
+  const [stars, setStars] = useState<Star[]>([]);
+
+  // Generate stars only on client to avoid hydration mismatch
+  useEffect(() => {
+    const starCount = 25;
+    const generatedStars = Array.from({ length: starCount }, (_, i) => {
       const baseX = Math.random() * 100;
       const baseY = Math.random() * 100;
-      const speed = Math.random() * 0.5 + 0.2; // Random speed
-      const angle = Math.random() * Math.PI * 2; // Random direction in radians
+      const speed = Math.random() * 0.5 + 0.2;
+      const angle = Math.random() * Math.PI * 2;
 
       return {
         id: i,
         x: baseX,
         y: baseY,
-        size: Math.random() * 1.5 + 0.5, // Random size between 0.5 and 2
-        duration: Math.random() * 25 + 15, // Random duration between 15-40s
+        size: Math.random() * 1.5 + 0.5,
+        duration: Math.random() * 25 + 15,
         delay: Math.random() * 5,
-        directionX: Math.cos(angle) * 150 * speed, // Random X movement
-        directionY: Math.sin(angle) * 150 * speed, // Random Y movement
-        opacity: Math.random() * 0.4 + 0.3, // Random opacity between 0.3-0.7
+        directionX: Math.cos(angle) * 150 * speed,
+        directionY: Math.sin(angle) * 150 * speed,
+        opacity: Math.random() * 0.4 + 0.3,
       };
-    }) as Star[];
+    });
+    setStars(generatedStars);
   }, []);
 
   return (
