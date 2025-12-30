@@ -247,3 +247,46 @@ html {
   animation: scroll-right linear infinite;
   will-change: transform;
 }
+
+/* Project Marquee - Auto-scrolling with pause on hover */
+@keyframes marquee-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee-scroll {
+  animation: marquee-scroll 25s linear infinite;
+  will-change: transform;
+}
+
+/* Feature card blur and hover effects */
+.feature-card {
+  filter: blur(2px);
+  opacity: 0.7;
+}
+
+.feature-card:hover {
+  filter: blur(0);
+  opacity: 1;
+  transform: scale(1.05);
+  background: hsl(var(--muted) / 0.6);
+  border-color: hsl(var(--border) / 0.6);
+}
+
+/* Slow spinning animation for rotating disc */
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 12s linear infinite;
+}

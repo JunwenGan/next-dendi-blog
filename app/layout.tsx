@@ -4,6 +4,7 @@ import { Geist, Geist_Mono, Cormorant_Garamond } from "next/font/google";
 import Navbar from "./components/Navbar";
 import "./globals.css";
 import Footer from "./components/Footer";
+import CTASection from "./components/CTASection";
 import Hero from "./Hero";
 import { Suspense, useEffect, useRef, useState } from "react";
 import { RefProvider } from "./components/RefProvider";
@@ -56,6 +57,8 @@ export default function RootLayout({
               <RefProvider>
                 <Navbar />
                 {children}
+                <CTASection />
+                <Footer />
               </RefProvider>
             </AuthProvider>
           </QueryClientProvider>

@@ -5,11 +5,12 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card";
 import { Badge } from "./ui/badge";
 import { Button } from "./ui/button";
-import { Github, Linkedin, ExternalLink, Heart, Copy, Check } from "lucide-react";
+import { Github, Linkedin, ExternalLink, Copy, Check, Layers } from "lucide-react";
 import Link from "next/link";
 import MeshGradient from "./MeshGradient";
 import TechStackScroller from "./TechStackScroller";
 import InteractiveGlobe from "./InteractiveGlobe";
+import ProjectMarquee from "./ProjectMarquee";
 import { techRow1, techRow2, techRow3 } from "@/app/lib/technologies";
 import confetti from "canvas-confetti";
 
@@ -83,44 +84,6 @@ export default function BentoGrid({ featuredProject }: BentoGridProps) {
         initial="hidden"
         animate="visible"
       >
-      {/* Top Section: Profile Picture and Collaboration */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-        {/* Collaboration Card - Left */}
-        <motion.div variants={itemVariants} className="md:col-span-1">
-          <Card className="h-full bg-card/50 border-border hover:border-border/80 transition-all duration-300 backdrop-blur-sm hover:shadow-lg hover:shadow-accent-pink/10">
-            <CardHeader>
-              <div className="flex items-center gap-2 mb-2">
-                <Heart className="h-5 w-5 text-accent-pink" fill="currentColor" />
-              </div>
-              <CardDescription className="text-xs uppercase tracking-wider text-muted-foreground mb-2">
-                COLLABORATION
-              </CardDescription>
-              <CardTitle className="text-lg text-foreground">
-                I prioritize client collaboration, fostering open communication
-              </CardTitle>
-            </CardHeader>
-          </Card>
-        </motion.div>
-
-        {/* Profile Picture - Center */}
-        <motion.div variants={itemVariants} className="md:col-span-1 flex items-center justify-center">
-          <div className="relative">
-            {/* Decorative circles */}
-            <div className="absolute -top-4 -left-4 w-32 h-32 rounded-full bg-muted/30 border border-border/50 blur-sm"></div>
-            <div className="absolute -bottom-4 -right-4 w-28 h-28 rounded-full bg-muted/30 border border-border/50 blur-sm"></div>
-            {/* Profile picture */}
-            <div className="relative w-24 h-24 rounded-full bg-gradient-to-br from-purple-500 to-blue-500 p-0.5">
-              <div className="w-full h-full rounded-full bg-card flex items-center justify-center">
-                <span className="text-3xl">👤</span>
-              </div>
-            </div>
-          </div>
-        </motion.div>
-
-        {/* Empty space - Right */}
-        <div className="hidden md:block md:col-span-1"></div>
-      </div>
-
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10 auto-rows-[minmax(220px,auto)]">
         {/* Box 1: Hero / Intro - Top Left, 2 columns, 1 row */}
         <motion.div
@@ -286,47 +249,34 @@ export default function BentoGrid({ featuredProject }: BentoGridProps) {
           </Card>
         </motion.div>
 
-        {/* Box 5: Websites that Impact - Second Row, Right, spans 2 columns */}
+        {/* Box 5: Inside Scoop - Second Row, Right, spans 2 columns */}
         <motion.div variants={itemVariants} className="md:col-span-2 md:row-span-1">
-          <Card className="group h-full bg-card/50 border-border hover:border-border/80 transition-all duration-300 backdrop-blur-sm hover:shadow-lg hover:shadow-accent-blue/10 overflow-hidden">
-            <CardHeader className="pb-3">
-              <CardTitle className="text-foreground">
-                Websites that <span className="text-accent-blue">Impact.</span>
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="pt-0 relative">
-              {/* Gradient Glow */}
-              <div className="absolute inset-0 bg-gradient-to-t from-accent-blue/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-
-              {/* Browser Mockup with Hover Animation */}
-              <div className="relative bg-muted/50 rounded-lg p-4 border border-border/50 mb-4 transition-all duration-300 group-hover:scale-[1.02] group-hover:-translate-y-1 group-hover:shadow-xl group-hover:shadow-accent-blue/20 group-hover:border-accent-blue/30">
-                {/* Browser Window Style */}
-                <div className="flex items-center gap-2 mb-3">
-                  <div className="flex gap-1.5">
-                    <div className="w-3 h-3 rounded-full bg-red-500/70 group-hover:bg-red-500 transition-colors"></div>
-                    <div className="w-3 h-3 rounded-full bg-yellow-500/70 group-hover:bg-yellow-500 transition-colors"></div>
-                    <div className="w-3 h-3 rounded-full bg-green-500/70 group-hover:bg-green-500 transition-colors"></div>
-                  </div>
-                  <div className="flex-1 bg-background/50 rounded px-2 py-1 flex items-center gap-2 group-hover:bg-background/80 transition-colors">
-                    <span className="text-xs text-muted-foreground">🔒</span>
-                    <span className="text-xs text-muted-foreground group-hover:text-foreground transition-colors">dendi-blog.vercel.app</span>
-                  </div>
-                </div>
-                <div className="bg-background/30 rounded p-4 min-h-[100px] flex items-center justify-center group-hover:bg-background/50 transition-colors">
-                  <div className="grid grid-cols-4 gap-2 opacity-30 group-hover:opacity-50 transition-opacity">
-                    {Array.from({ length: 16 }).map((_, i) => (
-                      <div key={i} className="w-full h-8 bg-muted rounded"></div>
-                    ))}
-                  </div>
-                </div>
+          <Card className="h-full bg-card/50 border-border hover:border-border/80 transition-all duration-300 backdrop-blur-sm hover:shadow-lg hover:shadow-accent-blue/10 overflow-hidden">
+            <CardContent className="pt-6 pb-4 relative min-h-[220px] flex flex-col">
+              {/* Project Features Marquee - Top area, interactive */}
+              <div className="relative z-10 mb-4">
+                <ProjectMarquee />
               </div>
-              <div className="relative flex gap-2">
-                <Button variant="default" className="bg-foreground text-background hover:bg-foreground/90">
-                  Start →
-                </Button>
-                <Button variant="outline" className="border-border text-muted-foreground hover:bg-muted hover:text-foreground">
-                  Details
-                </Button>
+
+              {/* Gradient Overlay - only covers bottom */}
+              <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-card via-card/90 to-transparent pointer-events-none" />
+
+              {/* Content - Bottom */}
+              <div className="relative z-20 mt-auto">
+                {/* Icon */}
+                <div className="w-12 h-12 rounded-lg border border-border/50 bg-muted/30 flex items-center justify-center mb-3">
+                  <Layers className="w-6 h-6 text-muted-foreground" />
+                </div>
+
+                {/* Label */}
+                <p className="text-xs uppercase tracking-widest text-muted-foreground mb-1">
+                  The Inside Scoop
+                </p>
+
+                {/* Title */}
+                <h3 className="text-xl md:text-2xl font-medium text-foreground">
+                  Currently building a Saas Application
+                </h3>
               </div>
             </CardContent>
           </Card>
