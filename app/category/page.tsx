@@ -2,11 +2,15 @@ import prisma from "@/prisma/client";
 import HomeBottom from "../HomeBottom";
 import CategoryList from "./_components/CategoryList";
 import { Metadata } from "next";
+import DecorativeSideBars from "../components/DecorativeSideBars";
 
 const category = () => {
   const categories = prisma.category.findMany();
   return (
-    <HomeBottom rightComponent={<CategoryList />}/>
+    <div className="relative">
+      <DecorativeSideBars />
+      <HomeBottom rightComponent={<CategoryList />}/>
+    </div>
   );
 };
 

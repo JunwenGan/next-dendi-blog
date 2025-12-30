@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import GuestbookClient from "./GuestbookClient";
 import prisma from "@/prisma/client";
+import DecorativeSideBars from "../components/DecorativeSideBars";
 
 export const metadata: Metadata = {
   title: "Guestbook - Dendi Portfolio",
@@ -25,15 +26,18 @@ export default async function GuestbookPage() {
   });
 
   return (
-    <div className="container mx-auto px-4 py-20">
-      <div className="mb-12">
-        <h1 className="text-4xl md:text-5xl font-bold mb-4">Guestbook</h1>
-        <p className="text-muted-foreground text-lg">
-          Leave a message! I&apos;d love to hear from you.
-        </p>
-      </div>
+    <div className="min-h-screen bg-background relative">
+      <DecorativeSideBars />
+      <div className="container mx-auto px-4 py-20 pl-8 pr-8 md:pl-16 md:pr-16 lg:pl-20 lg:pr-20">
+        <div className="mb-12">
+          <h1 className="text-4xl md:text-5xl font-bold mb-4">Guestbook</h1>
+          <p className="text-muted-foreground text-lg">
+            Leave a message! I&apos;d love to hear from you.
+          </p>
+        </div>
 
-      <GuestbookClient initialEntries={entries} />
+        <GuestbookClient initialEntries={entries} />
+      </div>
     </div>
   );
 }

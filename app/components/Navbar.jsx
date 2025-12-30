@@ -12,6 +12,7 @@ import { MonogramLogo } from "./Logo";
 
 const links = [
   { label: "Home", href: "/" },
+  { label: "About", href: "/about" },
   { label: "Projects", href: "/projects" },
   { label: "Guestbook", href: "/guestbook" },
   { label: "Archive", href: "/archive" },
