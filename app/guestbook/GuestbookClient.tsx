@@ -1,31 +1,13 @@
 "use client";
 
-import { useState } from "react";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { useState, useEffect, useRef, useCallback, useMemo } from "react";
 import { useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
-import axios from "axios";
-import { format } from "date-fns";
-import { Card, CardContent, CardHeader, CardTitle } from "@/app/components/ui/card";
-import { Button } from "@/app/components/ui/button";
-import { Badge } from "@/app/components/ui/badge";
-import { Separator } from "@/app/components/ui/separator";
-import NotificationBox from "@/app/components/NotificationBox";
-import dynamic from "next/dynamic";
-import { EmojiClickData } from "emoji-picker-react";
 import { motion } from "framer-motion";
-
-const EmojiPicker = dynamic(() => import("emoji-picker-react"), {
-  ssr: false,
-});
-
-const guestbookEntrySchema = z.object({
-  content: z.string().min(1, "Content is required").max(65535),
-});
-
-type GuestbookEntryFormData = z.infer<typeof guestbookEntrySchema>;
+import GuestbookCard from "./_components/GuestbookCard";
+import SignInCard from "./_components/SignInCard";
+import SignInModal from "./_components/SignInModal";
+import MessageForm from "./_components/MessageForm";
+import SkeletonCard from "./_components/SkeletonCard";
 
 interface GuestbookEntry {
   id: string;
@@ -43,181 +25,128 @@ interface GuestbookClientProps {
   initialEntries: GuestbookEntry[];
 }
 
+const ITEMS_PER_BATCH = 6; // Load 6 cards at a time
+
 export default function GuestbookClient({ initialEntries }: GuestbookClientProps) {
   const { status, data: session } = useSession();
-  const router = useRouter();
   const [entries, setEntries] = useState(initialEntries);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [error, setError] = useState("");
-  const [showNotification, setShowNotification] = useState(false);
-  const [showAlert, setShowAlert] = useState(false);
-  const [emojiOpen, setEmojiOpen] = useState(false);
+  const [showSignInModal, setShowSignInModal] = useState(false);
+  const [showMessageForm, setShowMessageForm] = useState(false);
 
-  const {
-    register,
-    handleSubmit,
-    setValue,
-    getValues,
-    formState: { errors },
-    reset,
-  } = useForm<GuestbookEntryFormData>({
-    resolver: zodResolver(guestbookEntrySchema),
-    defaultValues: {
-      content: "",
-    },
-  });
+  // Lazy loading state
+  const [visibleCount, setVisibleCount] = useState(ITEMS_PER_BATCH);
+  const [isLoadingMore, setIsLoadingMore] = useState(false);
+  const loadMoreRef = useRef<HTMLDivElement>(null);
 
-  const handleEmojiClick = (emojiData: EmojiClickData) => {
-    setValue("content", getValues().content + emojiData.emoji);
-  };
+  // Intersection Observer for infinite scroll
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const first = entries[0];
+        if (first.isIntersecting && visibleCount < initialEntries.length) {
+          setIsLoadingMore(true);
+          // Simulate network delay for smooth UX
+          setTimeout(() => {
+            setVisibleCount((prev) => Math.min(prev + ITEMS_PER_BATCH, initialEntries.length));
+            setIsLoadingMore(false);
+          }, 500);
+        }
+      },
+      { threshold: 0.1, rootMargin: "100px" }
+    );
 
-  const onSubmit = handleSubmit(async (data) => {
-    if (status !== "authenticated") {
-      setError("Please login first before leaving a message");
-      setShowNotification(true);
-      return;
+    const currentRef = loadMoreRef.current;
+    if (currentRef) {
+      observer.observe(currentRef);
     }
 
-    try {
-      setIsSubmitting(true);
-      const response = await axios.post("/api/guestbook", data);
-      setEntries([response.data, ...entries]);
-      setShowAlert(true);
-      setTimeout(() => setShowAlert(false), 3000);
-      reset();
-      setEmojiOpen(false);
-      router.refresh();
-    } catch (error: any) {
-      setIsSubmitting(false);
-      setError(
-        error.response?.data?.error || "Failed to post message. Please try again."
-      );
-      setShowNotification(true);
-      setEmojiOpen(false);
-    } finally {
-      setIsSubmitting(false);
+    return () => {
+      if (currentRef) {
+        observer.unobserve(currentRef);
+      }
+    };
+  }, [visibleCount, initialEntries.length]);
+
+  const handleWriteClick = useCallback(() => {
+    if (status === "authenticated") {
+      setShowMessageForm(true);
+    } else {
+      setShowSignInModal(true);
     }
-  });
+  }, [status]);
+
+  const handleNewEntry = useCallback((entry: GuestbookEntry) => {
+    setEntries((prev) => [entry, ...prev]);
+    setVisibleCount((prev) => prev + 1);
+  }, []);
+
+  // Get visible entries
+  const visibleEntries = entries.slice(0, visibleCount);
+  const hasMore = visibleCount < entries.length;
+  const remainingSkeletons = Math.min(ITEMS_PER_BATCH, entries.length - visibleCount);
 
   return (
-    <div className="space-y-8">
-      {showAlert && (
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="fixed left-1/2 -translate-x-1/2 top-20 z-50"
-        >
-          <Card className="border-accent-green bg-accent-green/10">
-            <CardContent className="pt-6">
-              <p className="text-accent-green">
-                Your message has been posted!
-              </p>
-            </CardContent>
-          </Card>
-        </motion.div>
-      )}
+    <>
+      {/* Grid Layout */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-8 auto-rows-fr">
+        {/* Sign In / Write Card - Always first */}
+        <SignInCard onWriteClick={handleWriteClick} />
 
-      {showNotification && (
-        <NotificationBox message={error} onClose={() => setShowNotification(false)} />
-      )}
+        {/* Visible Guestbook Entries */}
+        {visibleEntries.map((entry, index) => (
+          <GuestbookCard key={entry.id} entry={entry} index={index} />
+        ))}
 
-      {/* Form */}
-      <Card>
-        <CardHeader>
-          <CardTitle>Leave a Message</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <form onSubmit={onSubmit} className="space-y-4">
-            <textarea
-              {...register("content")}
-              placeholder="Say something nice..."
-              className="w-full min-h-[120px] p-4 border rounded-md resize-none focus:outline-none focus:ring-2 focus:ring-ring"
-              disabled={isSubmitting}
-            />
-            {errors.content && (
-              <p className="text-sm text-destructive">{errors.content.message}</p>
-            )}
-
-            <div className="flex gap-2">
-              <Button
-                type="button"
-                variant="outline"
-                onClick={(e) => {
-                  e.preventDefault();
-                  setEmojiOpen(!emojiOpen);
-                }}
-              >
-                😊 Emoji
-              </Button>
-              {emojiOpen && (
-                <div className="absolute z-10">
-                  <EmojiPicker onEmojiClick={handleEmojiClick} />
-                </div>
-              )}
-              <Button type="submit" disabled={isSubmitting} className="flex-1">
-                {isSubmitting ? "Posting..." : "Post Message"}
-              </Button>
-            </div>
-          </form>
-        </CardContent>
-      </Card>
-
-      {/* Entries */}
-      <div className="space-y-4">
-        <h2 className="text-2xl font-bold">Messages ({entries.length})</h2>
-        {entries.length === 0 ? (
-          <Card>
-            <CardContent className="pt-6">
-              <p className="text-muted-foreground text-center py-8">
-                No messages yet. Be the first to leave one!
-              </p>
-            </CardContent>
-          </Card>
-        ) : (
-          <div className="space-y-4">
-            {entries.map((entry, index) => (
-              <motion.div
-                key={entry.id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.05 }}
-              >
-                <Card>
-                  <CardContent className="pt-6">
-                    <div className="flex items-start gap-4">
-                      {entry.user.image && (
-                        <div className="w-10 h-10 rounded-full overflow-hidden flex-shrink-0">
-                          <img
-                            src={entry.user.image}
-                            alt={entry.user.name || "User"}
-                            className="w-full h-full object-cover"
-                          />
-                        </div>
-                      )}
-                      <div className="flex-1">
-                        <div className="flex items-center gap-2 mb-2">
-                          <p className="font-semibold">
-                            {entry.user.name || "Anonymous"}
-                          </p>
-                          <Badge variant="outline" className="text-xs">
-                            {format(new Date(entry.createAt), "MMM dd, yyyy")}
-                          </Badge>
-                        </div>
-                        <p className="text-muted-foreground whitespace-pre-wrap">
-                          {entry.content}
-                        </p>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
+        {/* Loading Skeletons when loading more */}
+        {isLoadingMore && hasMore && (
+          <>
+            {[...Array(remainingSkeletons)].map((_, index) => (
+              <SkeletonCard key={`skeleton-${index}`} index={index} />
             ))}
-          </div>
+          </>
+        )}
+
+        {/* Empty state */}
+        {entries.length === 0 && (
+          <motion.div
+            className="p-8 border-2 border-dashed border-border/30 rounded-2xl text-center"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+          >
+            <p className="text-muted-foreground">
+              No messages yet. Be the first to leave one!
+            </p>
+          </motion.div>
         )}
       </div>
-    </div>
+
+      {/* Load more trigger */}
+      {hasMore && (
+        <div ref={loadMoreRef} className="h-20 flex items-center justify-center">
+          {isLoadingMore && (
+            <div className="flex items-center gap-2 text-muted-foreground">
+              <div className="w-2 h-2 bg-purple-500 rounded-full animate-bounce" style={{ animationDelay: "0ms" }} />
+              <div className="w-2 h-2 bg-purple-500 rounded-full animate-bounce" style={{ animationDelay: "150ms" }} />
+              <div className="w-2 h-2 bg-purple-500 rounded-full animate-bounce" style={{ animationDelay: "300ms" }} />
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* Sign In Modal */}
+      <SignInModal
+        isOpen={showSignInModal}
+        onClose={() => setShowSignInModal(false)}
+      />
+
+      {/* Message Form Modal */}
+      <MessageForm
+        isOpen={showMessageForm}
+        onClose={() => setShowMessageForm(false)}
+        onSuccess={handleNewEntry}
+        userName={session?.user?.name}
+        userImage={session?.user?.image}
+      />
+    </>
   );
 }
-
-
-

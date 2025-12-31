@@ -14,19 +14,19 @@ interface HobbyPhoto {
 const hobbyPhotos: HobbyPhoto[] = [
   {
     id: 1,
-    src: "https://images.unsplash.com/photo-1539635278303-d4002c07eae3?w=300&h=400&fit=crop",
+    src: "/images/travel.jpg",
     label: "I Travel",
     alt: "Traveling adventure",
   },
   {
     id: 2,
-    src: "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=300&h=400&fit=crop",
+    src: "/images/fitness.jpg",
     label: "I Fit",
     alt: "Fitness workout",
   },
   {
     id: 3,
-    src: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=400&fit=crop",
+    src: "/images/me.jpg",
     label: "Me",
     alt: "Personal portrait",
   },

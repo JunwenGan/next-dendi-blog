@@ -68,6 +68,15 @@ export default {
         "hero-pattern": "url('/top.webp')",
         "bg-japan": "url('/bg-japan.jpg')"
       },
+      keyframes: {
+        shimmer: {
+          "0%": { transform: "translateX(-100%)" },
+          "100%": { transform: "translateX(100%)" },
+        },
+      },
+      animation: {
+        shimmer: "shimmer 2s infinite",
+      },
     },
   },
   plugins: [

@@ -1,11 +1,12 @@
 import { Metadata } from "next";
 import GuestbookClient from "./GuestbookClient";
+import GuestbookHero from "./_components/GuestbookHero";
 import prisma from "@/prisma/client";
 import DecorativeSideBars from "../components/DecorativeSideBars";
 
 export const metadata: Metadata = {
-  title: "Guestbook - Dendi Portfolio",
-  description: "Leave a message in my guestbook",
+  title: "Guestbook - Frederick",
+  description: "Leave your mark on the community wall",
 };
 
 export default async function GuestbookPage() {
@@ -26,21 +27,16 @@ export default async function GuestbookPage() {
   });
 
   return (
-    <div className="min-h-screen bg-background relative">
+    <main className="min-h-screen bg-background relative">
       <DecorativeSideBars />
-      <div className="container mx-auto px-4 py-20 pl-8 pr-8 md:pl-16 md:pr-16 lg:pl-20 lg:pr-20">
-        <div className="mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">Guestbook</h1>
-          <p className="text-muted-foreground text-lg">
-            Leave a message! I&apos;d love to hear from you.
-          </p>
-        </div>
 
-        <GuestbookClient initialEntries={entries} />
+      <div className="container mx-auto px-8 md:px-16 lg:px-20">
+        <GuestbookHero />
+
+        <div className="pb-20">
+          <GuestbookClient initialEntries={entries} />
+        </div>
       </div>
-    </div>
+    </main>
   );
 }
-
-
-

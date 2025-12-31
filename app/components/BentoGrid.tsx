@@ -79,7 +79,7 @@ export default function BentoGrid({ featuredProject }: BentoGridProps) {
       <div className="noise-texture absolute inset-0" />
       
       <motion.div
-        className="container relative z-10 mx-auto px-6 md:px-8 lg:px-12 py-12 md:py-16 lg:py-20"
+        className="container relative z-10 mx-auto px-8 md:px-16 lg:px-20 py-12 md:py-16 lg:py-20"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
