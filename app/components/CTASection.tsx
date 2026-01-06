@@ -38,16 +38,16 @@ export default function CTASection() {
   return (
     <section
       ref={sectionRef}
-      className="relative bg-[#0a0a0f] py-20 md:py-28 overflow-hidden"
+      className="relative bg-slate-50 dark:bg-[#0a0a0f] py-20 md:py-28 overflow-hidden"
     >
-      {/* Cinematic dark gradient background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-background via-[#0a0a0f] to-[#0a0a0f]" />
+      {/* Cinematic gradient background */}
+      <div className="absolute inset-0 bg-gradient-to-b from-background via-slate-100 to-slate-50 dark:from-background dark:via-[#0a0a0f] dark:to-[#0a0a0f]" />
 
       {/* Abstract flowing shapes - silk/smoke effect */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {/* Left flowing shape */}
         <div
-          className="absolute -left-1/4 top-1/4 w-[800px] h-[600px] opacity-[0.15]"
+          className="absolute -left-1/4 top-1/4 w-[800px] h-[600px] opacity-[0.25] dark:opacity-[0.15]"
           style={{
             background: 'radial-gradient(ellipse at center, rgba(99, 102, 241, 0.4) 0%, transparent 70%)',
             transform: 'rotate(-15deg)',
@@ -56,7 +56,7 @@ export default function CTASection() {
         />
         {/* Right flowing shape */}
         <div
-          className="absolute -right-1/4 top-1/3 w-[700px] h-[500px] opacity-[0.12]"
+          className="absolute -right-1/4 top-1/3 w-[700px] h-[500px] opacity-[0.2] dark:opacity-[0.12]"
           style={{
             background: 'radial-gradient(ellipse at center, rgba(168, 85, 247, 0.4) 0%, transparent 70%)',
             transform: 'rotate(20deg)',
@@ -65,7 +65,7 @@ export default function CTASection() {
         />
         {/* Bottom center glow */}
         <div
-          className="absolute left-1/2 -translate-x-1/2 bottom-0 w-[1000px] h-[400px] opacity-[0.1]"
+          className="absolute left-1/2 -translate-x-1/2 bottom-0 w-[1000px] h-[400px] opacity-[0.15] dark:opacity-[0.1]"
           style={{
             background: 'radial-gradient(ellipse at bottom, rgba(59, 130, 246, 0.5) 0%, transparent 60%)',
             filter: 'blur(40px)',

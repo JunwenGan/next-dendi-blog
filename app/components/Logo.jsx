@@ -18,33 +18,33 @@ const Logo = ({ size = 40 }) => {
           width="40"
           height="40"
           rx="8"
-          className="fill-white/10 group-hover:fill-white/20 transition-colors duration-300"
+          className="fill-foreground/10 group-hover:fill-foreground/20 transition-colors duration-300"
         />
 
         {/* Letter D */}
         <path
           d="M10 10H16C20.4183 10 24 13.5817 24 18V22C24 26.4183 20.4183 30 16 30H10V10Z"
-          stroke="white"
+          stroke="currentColor"
           strokeWidth="2.5"
           fill="none"
-          className="group-hover:stroke-gray-200 transition-colors duration-300"
+          className="text-foreground group-hover:text-foreground/80 transition-colors duration-300"
         />
 
         {/* Letter B - stylized, overlapping */}
         <path
           d="M18 10H24C27.3137 10 30 12.6863 30 16C30 17.5 29.5 18.5 28.5 19.5C29.5 20.5 30 21.5 30 23C30 26.3137 27.3137 29 24 29H18"
-          stroke="white"
+          stroke="currentColor"
           strokeWidth="2.5"
           fill="none"
-          className="group-hover:stroke-gray-200 transition-colors duration-300"
+          className="text-foreground group-hover:text-foreground/80 transition-colors duration-300"
         />
 
         {/* Middle line of B */}
         <path
           d="M18 19.5H26"
-          stroke="white"
+          stroke="currentColor"
           strokeWidth="2.5"
-          className="group-hover:stroke-gray-200 transition-colors duration-300"
+          className="text-foreground group-hover:text-foreground/80 transition-colors duration-300"
         />
       </svg>
     </Link>
@@ -55,7 +55,7 @@ const Logo = ({ size = 40 }) => {
 export const TextLogo = () => {
   return (
     <Link href="/" className="flex items-center gap-1 group">
-      <span className="text-2xl font-bold text-white tracking-tight">
+      <span className="text-2xl font-bold text-foreground tracking-tight">
         <span className="inline-block transition-transform duration-300 group-hover:-translate-y-0.5">D</span>
         <span className="inline-block text-gray-400 transition-transform duration-300 group-hover:translate-y-0.5">B</span>
       </span>

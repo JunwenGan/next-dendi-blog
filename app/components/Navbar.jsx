@@ -13,6 +13,7 @@ import { MonogramLogo } from "./Logo";
 
 const mainLinks = [
   { label: "Home", href: "/" },
+  { label: "Blog", href: "/blog" },
   { label: "About", href: "/about" },
   { label: "Projects", href: "/projects" },
 ];
@@ -49,6 +50,7 @@ const allLinks = [
   { label: "Archive", href: "/archive" },
   { label: "Category", href: "/category" },
 ];
+// Note: Blog is already included via ...mainLinks spread
 
 const Navbar = () => {
   const currentPath = usePathname();

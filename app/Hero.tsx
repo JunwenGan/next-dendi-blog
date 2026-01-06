@@ -1,8 +1,8 @@
 "use client";
 
-import { AiOutlineArrowDown } from "react-icons/ai";
 import { ReactTyped } from "react-typed";
 import { motion } from "framer-motion";
+import Image from "next/image";
 import AnimatedStars from "./components/AnimatedStars";
 
 const Hero = () => {
@@ -102,41 +102,79 @@ const Hero = () => {
       ></div>
 
       {/* Content */}
-      <div className="container relative z-20 mx-auto mb-14 flex w-full flex-col items-center justify-center gap-y-6 px-4">
-        {/* Main Title */}
-        <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight text-center">
-          <span className="bg-gradient-to-r from-foreground via-foreground/80 to-foreground/60 bg-clip-text text-transparent">
-            Dendi&apos;s Blog
-          </span>
-        </h1>
+      <div className="container relative z-20 mx-auto mb-14 flex w-full flex-col items-center justify-center gap-y-8 px-4">
+        {/* Main Title with Avatar */}
+        <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-6">
+          {/* Hello, I'm Frederick */}
+          <motion.h1
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-medium text-foreground tracking-tight"
+            style={{ fontFamily: "var(--font-cormorant), serif" }}
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            Hello, I&apos;m <span className="font-semibold">Frederick</span>
+          </motion.h1>
 
-        {/* Subtitle */}
-        <p className="text-xl sm:text-2xl md:text-3xl font-light text-muted-foreground text-center">
-          Be yourself
-        </p>
+          {/* Avatar with hover effects */}
+          <motion.div
+            className="relative group cursor-pointer"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            whileHover={{ scale: 1.05 }}
+          >
+            {/* Glow effect on hover */}
+            <div className="absolute -inset-1 bg-gradient-to-r from-purple-500 via-pink-500 to-blue-500 rounded-full opacity-0 group-hover:opacity-75 blur-md transition-all duration-500 group-hover:duration-200" />
+
+            {/* Rotating border on hover */}
+            <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-500 via-pink-500 to-blue-500 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 animate-spin-slow" />
+
+            {/* Avatar container */}
+            <div className="relative w-20 h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 rounded-full overflow-hidden border-2 border-border/50 group-hover:border-transparent transition-all duration-300 bg-gradient-to-br from-purple-500/20 to-pink-500/20">
+              <Image
+                src="/images/me.jpg"
+                alt="Frederick"
+                fill
+                className="object-cover transition-transform duration-500 group-hover:scale-110"
+                priority
+              />
+              {/* Shine effect on hover */}
+              <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 translate-x-[-100%] group-hover:translate-x-[100%]" style={{ transition: "transform 0.6s ease-out, opacity 0.3s ease" }} />
+            </div>
+          </motion.div>
+
+          {/* a Full Stack Developer */}
+          <motion.h1
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-medium text-foreground tracking-tight"
+            style={{ fontFamily: "var(--font-cormorant), serif" }}
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+          >
+            a <span className="font-semibold bg-gradient-to-r from-purple-500 via-pink-500 to-blue-500 bg-clip-text text-transparent">Full Stack Developer</span>
+          </motion.h1>
+        </div>
 
         {/* Typed Text */}
-        <div className="h-8">
+        <motion.div
+          className="h-8"
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.6 }}
+        >
           <ReactTyped
             className="text-lg sm:text-xl md:text-2xl font-light text-muted-foreground/80"
             strings={[
-              "Don't make a promise when you are happy",
-              "Don't reply when you are angry",
-              "Don't make a decision when you are sad",
+              "Building beautiful web experiences",
+              "Crafting scalable applications",
+              "Turning ideas into reality",
             ]}
             typeSpeed={40}
             backSpeed={50}
             loop
           />
-        </div>
-      </div>
-
-      {/* Scroll Indicator */}
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce z-20">
-        <AiOutlineArrowDown
-          size={30}
-          className="text-muted-foreground hover:text-foreground cursor-pointer transition-colors"
-        />
+        </motion.div>
       </div>
 
       {/* Bottom Fade */}

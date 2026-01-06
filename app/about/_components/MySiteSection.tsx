@@ -16,7 +16,7 @@ export default function MySiteSection() {
   return (
     <section className="relative py-20 md:py-28 overflow-hidden">
       {/* Background */}
-      <div className="absolute inset-0 bg-[#0a0a0f]" />
+      <div className="absolute inset-0 bg-slate-50 dark:bg-[#0a0a0f]" />
 
       <div className="container relative z-10 mx-auto px-6 md:px-8 lg:px-12">
         {/* Section Header */}
@@ -110,21 +110,21 @@ export default function MySiteSection() {
                 <div className="flex items-center justify-center pt-8 pb-4">
                   <div className="relative">
                     {/* Phone mockup */}
-                    <div className="w-24 h-36 rounded-xl bg-gradient-to-br from-gray-800 to-gray-900 border border-gray-700 p-1 transform -rotate-6 shadow-xl">
+                    <div className="w-24 h-36 rounded-xl bg-gradient-to-br from-gray-200 to-gray-300 dark:from-gray-800 dark:to-gray-900 border border-gray-300 dark:border-gray-700 p-1 transform -rotate-6 shadow-xl">
                       <div className="w-full h-full rounded-lg bg-gradient-to-br from-purple-500/30 to-pink-500/30 flex items-center justify-center">
                         <div className="space-y-1">
-                          <div className="w-12 h-1 bg-white/30 rounded" />
-                          <div className="w-8 h-1 bg-white/20 rounded" />
+                          <div className="w-12 h-1 bg-foreground/30 rounded" />
+                          <div className="w-8 h-1 bg-foreground/20 rounded" />
                         </div>
                       </div>
                     </div>
                     {/* Tablet mockup */}
-                    <div className="absolute -right-12 top-4 w-28 h-20 rounded-lg bg-gradient-to-br from-gray-800 to-gray-900 border border-gray-700 p-1 transform rotate-6 shadow-xl">
+                    <div className="absolute -right-12 top-4 w-28 h-20 rounded-lg bg-gradient-to-br from-gray-200 to-gray-300 dark:from-gray-800 dark:to-gray-900 border border-gray-300 dark:border-gray-700 p-1 transform rotate-6 shadow-xl">
                       <div className="w-full h-full rounded bg-gradient-to-br from-pink-500/30 to-purple-500/30 flex items-center justify-center">
                         <div className="space-y-1">
-                          <div className="w-16 h-1 bg-white/30 rounded" />
-                          <div className="w-12 h-1 bg-white/20 rounded" />
-                          <div className="w-8 h-1 bg-white/20 rounded" />
+                          <div className="w-16 h-1 bg-foreground/30 rounded" />
+                          <div className="w-12 h-1 bg-foreground/20 rounded" />
+                          <div className="w-8 h-1 bg-foreground/20 rounded" />
                         </div>
                       </div>
                     </div>
@@ -182,9 +182,9 @@ export default function MySiteSection() {
                 <div className="relative">
                   {/* Vinyl record effect */}
                   <div className="absolute inset-0 -right-4 flex items-center justify-center">
-                    <div className="w-32 h-32 rounded-full bg-gradient-to-br from-gray-800 to-black border-4 border-gray-700">
+                    <div className="w-32 h-32 rounded-full bg-gradient-to-br from-gray-300 to-gray-400 dark:from-gray-800 dark:to-black border-4 border-gray-400 dark:border-gray-700">
                       <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="w-8 h-8 rounded-full bg-gray-600" />
+                        <div className="w-8 h-8 rounded-full bg-gray-500 dark:bg-gray-600" />
                       </div>
                     </div>
                   </div>

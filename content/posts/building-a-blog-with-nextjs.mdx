@@ -1,0 +1,103 @@
+---
+title: "How to Build a Blog with Next.js and MDX"
+date: "2025-06-28"
+summary: "Build a blazing fast markdown blog using Next.js and MDX with this complete walkthrough."
+tags: ["nextjs", "react", "tutorial"]
+readTime: "14 min read"
+author:
+  name: "Dendi"
+published: true
+---
+
+## Introduction
+
+Building a blog with Next.js and MDX gives you the best of both worlds: the power of React components with the simplicity of Markdown. In this guide, I'll walk you through how I built this very blog.
+
+<Callout type="info" title="What You'll Learn">
+- Setting up MDX in Next.js
+- Creating a file-based blog system
+- Adding custom components to MDX
+- Styling your blog posts
+</Callout>
+
+## Why MDX?
+
+MDX lets you write JSX directly in your Markdown files. This means you can:
+
+1. **Import components** - Use React components in your posts
+2. **Interactive content** - Add charts, code playgrounds, etc.
+3. **Consistent styling** - Apply your design system everywhere
+
+## Project Setup
+
+First, create a new Next.js project:
+
+```bash
+npx create-next-app@latest my-blog
+cd my-blog
+```
+
+Then install the MDX dependencies:
+
+```bash
+npm install next-mdx-remote gray-matter
+```
+
+## File Structure
+
+Organize your posts in a `content` folder:
+
+```
+content/
+  posts/
+    hello-world.mdx
+    my-first-post.mdx
+```
+
+## Reading MDX Files
+
+Create a utility function to read and parse MDX files:
+
+```typescript
+import fs from 'fs';
+import path from 'path';
+import matter from 'gray-matter';
+
+export async function getPostBySlug(slug: string) {
+  const filePath = path.join(process.cwd(), 'content/posts', `${slug}.mdx`);
+  const fileContents = fs.readFileSync(filePath, 'utf8');
+  const { data, content } = matter(fileContents);
+
+  return { frontmatter: data, content };
+}
+```
+
+<Callout type="warning" title="Important">
+Make sure to add proper error handling for cases when files don't exist!
+</Callout>
+
+## Custom Components
+
+The real power of MDX comes from custom components. Here's how to create a callout:
+
+```tsx
+export default function Callout({ type, title, children }) {
+  return (
+    <div className={`callout callout-${type}`}>
+      <strong>{title}</strong>
+      {children}
+    </div>
+  );
+}
+```
+
+## Conclusion
+
+Building a blog with Next.js and MDX is straightforward once you understand the basics. The combination gives you:
+
+- Great developer experience
+- Full control over styling
+- Ability to add interactive elements
+- SEO-friendly static pages
+
+Happy blogging!

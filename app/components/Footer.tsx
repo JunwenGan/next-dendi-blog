@@ -46,7 +46,7 @@ const Footer = () => {
           <div className="flex-1 space-y-4 max-w-md">
             <MonogramLogo size={40} />
             <p className="text-muted-foreground text-sm leading-relaxed">
-              I&apos;m Dendi - a full-stack developer, freelancer & problem
+              I&apos;m Frederick - a full-stack developer, freelancer & problem
               solver. Thanks for checking out my site!
             </p>
           </div>
@@ -102,7 +102,7 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 pt-4 pb-0 md:pb-0 border-t border-border/50">
           {/* Copyright & Legal Links - Left */}
           <div className="flex flex-wrap items-center gap-4 text-xs text-muted-foreground">
-            <p>© {currentYear} Dendi. All rights reserved.</p>
+            <p>© {currentYear} Frederick. All rights reserved.</p>
             <Link
               href="/privacy"
               className="hover:text-foreground/80 transition-colors"
