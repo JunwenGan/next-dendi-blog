@@ -10,13 +10,16 @@ const Footer = () => {
 
   const generalLinks = [
     { label: "Home", href: "/" },
+    { label: "Blog", href: "/blog" },
     { label: "Projects", href: "/projects" },
-    { label: "Archive", href: "/archive" },
-    { label: "Category", href: "/category" },
+    { label: "About", href: "/about" },
   ];
 
   const specificLinks = [
     { label: "Guestbook", href: "/guestbook" },
+    { label: "Uses", href: "/uses" },
+    { label: "Links", href: "/links" },
+    { label: "Bucket List", href: "/bucket-list" },
   ];
 
   const socialLinks = [
@@ -41,9 +44,9 @@ const Footer = () => {
     <footer className="relative bg-background border-t border-border/50">
       <div className="container mx-auto px-6 md:px-8 lg:px-12 pt-12 md:pt-16 pb-4 md:pb-6 space-y-8">
         {/* First Row: Brand Introduction & Navigation Links */}
-        <div className="flex flex-col md:flex-row justify-between gap-8 md:gap-12">
+        <div className="flex flex-col md:flex-row justify-between gap-8">
           {/* Brand/Introduction Section - Left */}
-          <div className="flex-1 space-y-4 max-w-md">
+          <div className="space-y-4 max-w-md">
             <MonogramLogo size={40} />
             <p className="text-muted-foreground text-sm leading-relaxed">
               I&apos;m Frederick - a full-stack developer, freelancer & problem
@@ -51,8 +54,8 @@ const Footer = () => {
             </p>
           </div>
 
-          {/* Navigation Links & Social Media - Right */}
-          <div className="flex flex-col md:flex-row gap-8 md:gap-12">
+          {/* Navigation Links - Right, with margin from edge */}
+          <div className="flex flex-row gap-16 md:gap-20 md:mr-8 lg:mr-16">
             {/* General Navigation */}
             <div className="space-y-4">
               <h3 className="text-xs uppercase tracking-wider text-muted-foreground font-medium">
@@ -89,17 +92,11 @@ const Footer = () => {
               </nav>
             </div>
 
-            {/* More Navigation - Empty for now, can add more links later */}
-            <div className="space-y-4">
-              <h3 className="text-xs uppercase tracking-wider text-muted-foreground font-medium">
-                More
-              </h3>
-            </div>
           </div>
         </div>
 
         {/* Second Row: Copyright & Legal Links (Left) + Social Media Icons (Right) */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 pt-4 pb-0 md:pb-0 border-t border-border/50">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 pt-4 pb-0 md:pb-0">
           {/* Copyright & Legal Links - Left */}
           <div className="flex flex-wrap items-center gap-4 text-xs text-muted-foreground">
             <p>© {currentYear} Frederick. All rights reserved.</p>

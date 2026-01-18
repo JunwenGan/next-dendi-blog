@@ -8,7 +8,7 @@ import {
   AiOutlineClose,
   AiOutlineMenu,
 } from "react-icons/ai";
-import { ChevronUp, BookOpen, Archive, FolderOpen, MessageSquare } from "lucide-react";
+import { ChevronUp, BookOpen, MessageSquare, Link2, Laptop } from "lucide-react";
 import { MonogramLogo } from "./Logo";
 
 const mainLinks = [
@@ -38,8 +38,8 @@ const featuredLinks = [
 
 // Smaller items (right side)
 const quickLinks = [
-  { label: "Archive", href: "/archive", icon: Archive, description: "All blog posts" },
-  { label: "Category", href: "/category", icon: FolderOpen, description: "Browse by topic" },
+  { label: "Links", href: "/links", icon: Link2, description: "Connect with me" },
+  { label: "Uses", href: "/uses", icon: Laptop, description: "My tools & gear" },
 ];
 
 // All unique links for mobile menu
@@ -47,8 +47,8 @@ const allLinks = [
   ...mainLinks,
   { label: "Guestbook", href: "/guestbook" },
   { label: "Bucket List", href: "/bucket-list" },
-  { label: "Archive", href: "/archive" },
-  { label: "Category", href: "/category" },
+  { label: "Links", href: "/links" },
+  { label: "Uses", href: "/uses" },
 ];
 // Note: Blog is already included via ...mainLinks spread
 
@@ -79,7 +79,7 @@ const Navbar = () => {
   };
 
   // Check if any "More" link is active
-  const moreHrefs = ["/guestbook", "/bucket-list", "/archive", "/category"];
+  const moreHrefs = ["/guestbook", "/bucket-list", "/links", "/uses"];
   const isMoreActive = moreHrefs.some((href) => isLinkActive(href));
 
   return (
@@ -232,22 +232,13 @@ const Navbar = () => {
             Sign out
           </Link>
         )}
-
-        {status === "unauthenticated" && (
-          <Link
-            href="/api/auth/signin"
-            className="ml-1 px-4 py-2 rounded-full text-sm font-medium bg-foreground text-background hover:bg-foreground/90 transition-all duration-200"
-          >
-            Login
-          </Link>
-        )}
       </nav>
 
       {/* Right Side - Avatar or Empty */}
       <div className="flex items-center gap-3">
         {status === "authenticated" && (
           <div className="hidden md:block avatar">
-            <div className="w-8 rounded-full ring-2 ring-border">
+            <div className="w-8 rounded-full overflow-hidden">
               <img src={session.user?.image} alt="Avatar" />
             </div>
           </div>
@@ -309,18 +300,6 @@ const Navbar = () => {
                   </Link>
                 </li>
               </>
-            )}
-
-            {status === "unauthenticated" && (
-              <li className="pt-2 border-t border-border">
-                <Link
-                  href="/api/auth/signin"
-                  className="block px-4 py-3 rounded-xl text-sm font-medium text-center bg-foreground text-background"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  Login
-                </Link>
-              </li>
             )}
           </ul>
         </div>

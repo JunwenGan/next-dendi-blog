@@ -12,7 +12,7 @@ interface SignInCardProps {
 const SignInCard = memo(function SignInCard({ onWriteClick }: SignInCardProps) {
   return (
     <motion.div
-      className="border-2 border-dashed border-border/50 rounded-2xl p-4 bg-card/30 backdrop-blur-sm flex flex-col justify-center"
+      className="border-2 border-dashed border-border/50 rounded-2xl p-4 bg-card/30 backdrop-blur-sm flex flex-col items-center justify-center text-center"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4 }}

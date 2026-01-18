@@ -38,66 +38,10 @@ export default function CTASection() {
   return (
     <section
       ref={sectionRef}
-      className="relative bg-slate-50 dark:bg-[#0a0a0f] py-20 md:py-28 overflow-hidden"
+      className="relative py-20 md:py-28 overflow-hidden"
     >
-      {/* Cinematic gradient background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-background via-slate-100 to-slate-50 dark:from-background dark:via-[#0a0a0f] dark:to-[#0a0a0f]" />
-
-      {/* Abstract flowing shapes - silk/smoke effect */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {/* Left flowing shape */}
-        <div
-          className="absolute -left-1/4 top-1/4 w-[800px] h-[600px] opacity-[0.25] dark:opacity-[0.15]"
-          style={{
-            background: 'radial-gradient(ellipse at center, rgba(99, 102, 241, 0.4) 0%, transparent 70%)',
-            transform: 'rotate(-15deg)',
-            filter: 'blur(60px)',
-          }}
-        />
-        {/* Right flowing shape */}
-        <div
-          className="absolute -right-1/4 top-1/3 w-[700px] h-[500px] opacity-[0.2] dark:opacity-[0.12]"
-          style={{
-            background: 'radial-gradient(ellipse at center, rgba(168, 85, 247, 0.4) 0%, transparent 70%)',
-            transform: 'rotate(20deg)',
-            filter: 'blur(60px)',
-          }}
-        />
-        {/* Bottom center glow */}
-        <div
-          className="absolute left-1/2 -translate-x-1/2 bottom-0 w-[1000px] h-[400px] opacity-[0.15] dark:opacity-[0.1]"
-          style={{
-            background: 'radial-gradient(ellipse at bottom, rgba(59, 130, 246, 0.5) 0%, transparent 60%)',
-            filter: 'blur(40px)',
-          }}
-        />
-      </div>
-
-      {/* Decorative lines/waves */}
-      <svg
-        className="absolute inset-0 w-full h-full opacity-[0.03] pointer-events-none"
-        preserveAspectRatio="none"
-      >
-        <defs>
-          <pattern id="waves" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
-            <path
-              d="M0 50 Q25 30 50 50 T100 50"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="0.5"
-              className="text-foreground"
-            />
-          </pattern>
-        </defs>
-        <rect width="100%" height="100%" fill="url(#waves)" />
-      </svg>
-
-      {/* Noise texture for premium feel */}
-      <div className="absolute inset-0 opacity-[0.03] pointer-events-none"
-        style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
-        }}
-      />
+      {/* Background */}
+      <div className="absolute inset-0 bg-background" />
 
       <div className="container relative z-10 mx-auto px-6 md:px-8 lg:px-12">
         {/* Logo with glow */}

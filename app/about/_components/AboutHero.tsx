@@ -8,8 +8,8 @@ import RotatingPhotos from "./RotatingPhotos";
 export default function AboutHero() {
   return (
     <section className="relative py-20 md:py-28 overflow-hidden">
-      {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-b from-background via-background to-muted/20" />
+      {/* Background */}
+      <div className="absolute inset-0 bg-background" />
 
       <div className="container relative z-10 mx-auto px-6 md:px-8 lg:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
@@ -64,7 +64,7 @@ export default function AboutHero() {
             {/* Social Icons */}
             <div className="flex items-center gap-4">
               <Link
-                href="https://linkedin.com"
+                href="https://www.linkedin.com/in/junwen-gan-b0336b339/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-muted-foreground hover:text-foreground transition-colors"
@@ -72,7 +72,7 @@ export default function AboutHero() {
                 <Linkedin className="w-5 h-5" />
               </Link>
               <Link
-                href="https://github.com"
+                href="https://github.com/JunwenGan"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-muted-foreground hover:text-foreground transition-colors"

@@ -4,7 +4,7 @@ import ProjectsGrid from "../components/ProjectsGrid";
 import DecorativeSideBars from "../components/DecorativeSideBars";
 
 export const metadata: Metadata = {
-  title: "Projects - Dendi Portfolio",
+  title: "Projects - Frederick Portfolio",
   description: "A showcase of my projects and work",
 };
 
@@ -28,6 +28,7 @@ export default async function ProjectsPage() {
     </div>
   );
 }
+
 
 
 

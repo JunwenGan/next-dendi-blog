@@ -5,7 +5,7 @@ import BlogClient from "./_components/BlogClient";
 import DecorativeSideBars from "@/app/components/DecorativeSideBars";
 
 export const metadata: Metadata = {
-  title: "Blog | Dendi",
+  title: "Blog | Frederick",
   description: "Handpicked insights on frontend development, tools, and productivity.",
 };
 

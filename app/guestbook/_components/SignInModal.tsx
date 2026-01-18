@@ -24,15 +24,21 @@ export default function SignInModal({ isOpen, onClose }: SignInModalProps) {
             onClick={onClose}
           />
 
-          {/* Modal */}
+          {/* Modal Container - Flexbox centering */}
           <motion.div
-            className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-50 w-full max-w-md"
-            initial={{ opacity: 0, scale: 0.95, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.95, y: 20 }}
-            transition={{ duration: 0.2 }}
+            className="fixed inset-0 z-50 flex items-center justify-center p-4"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
           >
-            <div className="bg-card border border-border rounded-2xl p-8 shadow-2xl">
+            <motion.div
+              className="w-full max-w-md bg-card border border-border rounded-2xl p-8 shadow-2xl relative"
+              initial={{ scale: 0.95, y: 20 }}
+              animate={{ scale: 1, y: 0 }}
+              exit={{ scale: 0.95, y: 20 }}
+              transition={{ duration: 0.2 }}
+              onClick={(e) => e.stopPropagation()}
+            >
               {/* Close button */}
               <button
                 onClick={onClose}
@@ -88,7 +94,7 @@ export default function SignInModal({ isOpen, onClose }: SignInModalProps) {
                   Continue with Google
                 </Button>
               </div>
-            </div>
+            </motion.div>
           </motion.div>
         </>
       )}

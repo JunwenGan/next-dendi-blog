@@ -92,7 +92,7 @@ export default function PostHeader({ frontmatter }: PostHeaderProps) {
           )}
           <div>
             <p className="text-sm font-medium text-foreground">
-              {frontmatter.author?.name || "Dendi"}
+              {frontmatter.author?.name || "Frederick"}
             </p>
             <p className="text-xs text-muted-foreground">
               {formattedDate} ({relativeTime} ago)

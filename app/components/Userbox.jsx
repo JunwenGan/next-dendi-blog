@@ -28,7 +28,7 @@ const Userbox = async () => {
             <FaGithubSquare size={30} />
           </Link>
           <Link
-            href="https://linkedin.com/in/junwen-gan-b0336b339"
+            href="https://www.linkedin.com/in/junwen-gan-b0336b339/"
             rel="noopener noreferrer"
             target="_blank"
           >

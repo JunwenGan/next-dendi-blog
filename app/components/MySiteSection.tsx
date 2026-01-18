@@ -15,8 +15,8 @@ const tools = [
 export default function MySiteSection() {
   return (
     <section className="relative py-20 md:py-28 overflow-hidden">
-      {/* Background */}
-      <div className="absolute inset-0 bg-slate-50 dark:bg-[#0a0a0f]" />
+      {/* Background - matches theme */}
+      <div className="absolute inset-0 bg-background" />
 
       <div className="container relative z-10 mx-auto px-6 md:px-8 lg:px-12">
         {/* Section Header */}

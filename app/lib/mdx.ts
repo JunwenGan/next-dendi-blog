@@ -1,7 +1,8 @@
 import fs from "fs"
 import path from "path"
 import matter from "gray-matter"
-import { serialize, type MDXRemoteSerializeResult } from "next-mdx-remote/serialize"
+import { serialize } from "next-mdx-remote/serialize"
+import type { MDXRemoteSerializeResult } from "next-mdx-remote"
 import rehypeSlug from "rehype-slug"
 import rehypeAutolinkHeadings from "rehype-autolink-headings"
 import remarkGfm from "remark-gfm"
@@ -200,6 +201,7 @@ export function calculateReadTime(content: string): string {
   const minutes = Math.ceil(wordCount / wordsPerMinute)
   return `${minutes} min read`
 }
+
 
 
 

@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import DecorativeSideBars from "../components/DecorativeSideBars";
 import AboutHero from "./_components/AboutHero";
 import ExperienceSection from "./_components/ExperienceSection";
-import MySiteSection from "./_components/MySiteSection";
+import MySiteSection from "../components/MySiteSection";
 
 export const metadata: Metadata = {
   title: "About - Frederick",

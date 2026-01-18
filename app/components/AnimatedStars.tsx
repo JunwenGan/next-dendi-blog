@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 
 interface Star {
@@ -10,8 +9,10 @@ interface Star {
   size: number;
   duration: number;
   delay: number;
-  directionX: number;
-  directionY: number;
+  dx1: number;
+  dy1: number;
+  dx2: number;
+  dy2: number;
   opacity: number;
 }
 
@@ -26,6 +27,8 @@ const AnimatedStars = () => {
       const baseY = Math.random() * 100;
       const speed = Math.random() * 0.5 + 0.2;
       const angle = Math.random() * Math.PI * 2;
+      const moveX = Math.cos(angle) * 150 * speed;
+      const moveY = Math.sin(angle) * 150 * speed;
 
       return {
         id: i,
@@ -34,8 +37,10 @@ const AnimatedStars = () => {
         size: Math.random() * 1.5 + 0.5,
         duration: Math.random() * 25 + 15,
         delay: Math.random() * 5,
-        directionX: Math.cos(angle) * 150 * speed,
-        directionY: Math.sin(angle) * 150 * speed,
+        dx1: moveX,
+        dy1: moveY,
+        dx2: moveX * 0.5,
+        dy2: moveY * 0.5,
         opacity: Math.random() * 0.4 + 0.3,
       };
     });
@@ -45,34 +50,23 @@ const AnimatedStars = () => {
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none z-[1]">
       {stars.map((star) => (
-        <motion.div
+        <div
           key={star.id}
-          className="absolute rounded-full"
+          className="absolute rounded-full animate-star-float will-change-transform"
           style={{
             left: `${star.x}%`,
             top: `${star.y}%`,
             width: `${star.size}px`,
             height: `${star.size}px`,
-            opacity: star.opacity,
             backgroundColor: "var(--star-color)",
-          }}
-          animate={{
-            x: [0, star.directionX, star.directionX * 0.5, -star.directionX * 0.5, 0],
-            y: [0, star.directionY, star.directionY * 0.5, -star.directionY * 0.5, 0],
-            opacity: [
-              star.opacity,
-              star.opacity * 1.3,
-              star.opacity * 0.8,
-              star.opacity * 1.2,
-              star.opacity,
-            ],
-          }}
-          transition={{
-            duration: star.duration,
-            delay: star.delay,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
+            "--dx1": `${star.dx1}px`,
+            "--dy1": `${star.dy1}px`,
+            "--dx2": `${star.dx2}px`,
+            "--dy2": `${star.dy2}px`,
+            "--star-opacity": star.opacity,
+            animationDuration: `${star.duration}s`,
+            animationDelay: `${star.delay}s`,
+          } as React.CSSProperties}
         />
       ))}
     </div>
@@ -80,4 +74,3 @@ const AnimatedStars = () => {
 };
 
 export default AnimatedStars;
-

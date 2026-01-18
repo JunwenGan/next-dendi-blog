@@ -45,7 +45,7 @@ const SigninBox = () => {
         <FaGithub /> Sign in with Github
       </button>
       <p className="mt-4 text-sm text-muted-foreground">
-        Don't have an account?{" "}
+        Don&apos;t have an account?{" "}
         <a href="#" className="text-purple-500 hover:underline">
           Sign up
         </a>

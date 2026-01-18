@@ -9,7 +9,6 @@ export const metadata: Metadata = {
   description: "Life milestones and goals I'm working towards.",
 };
 
-// Sample data - you can edit this to match your own milestones and goals
 const sections: BucketSectionData[] = [
   {
     number: "01",
@@ -17,36 +16,52 @@ const sections: BucketSectionData[] = [
     items: [
       {
         id: "1",
-        title: "Remote working with client from abroad",
+        title: "Bachelor's Degree in Computer Science",
         description:
-          "Secured my first international contract via cold outreach on LinkedIn. Delivered a full-stack SaaS MVP.",
+          "Graduated with a Computer Science degree from university in China, building a strong foundation in algorithms, data structures, and software engineering.",
         completed: true,
-        date: "Sep 2024",
+        date: "Jun 2020",
       },
       {
         id: "2",
-        title: "Get a Remote Job",
+        title: "First Software Developer Job",
         description:
-          "Transitioned to a full-time remote role at a forward-thinking tech company, enabling a location-independent lifestyle.",
+          "Landed my first professional role as a software developer in China, kickstarting my career in tech just two months after graduation.",
         completed: true,
-        date: "Jan 2025",
+        date: "Aug 2020",
       },
       {
         id: "3",
-        title: "Create portfolio website",
+        title: "Master's Degree at Monash University",
         description:
-          "Launched v2.0 of this digital garden. Focused on performance, micro-interactions, and a clean bento-grid aesthetic.",
+          "Moved to Australia to pursue a Master of Information Technology at Monash University, expanding my skills and experiencing a new culture.",
         completed: true,
-        date: "Aug 2024",
-        link: "/",
+        date: "Feb 2023",
       },
       {
         id: "4",
-        title: "First OpenSource contribution",
+        title: "Graduated with Master's Degree",
         description:
-          "Merged a PR into a popular UI library, fixing a critical accessibility bug.",
+          "Successfully completed my Master of IT at Monash University, gaining advanced knowledge in software development and project management.",
         completed: true,
-        date: "Nov 2024",
+        date: "Dec 2024",
+      },
+      {
+        id: "5",
+        title: "Create Portfolio Website",
+        description:
+          "Built this digital portfolio from scratch using Next.js, featuring a modern bento-grid design with smooth animations and dark/light mode.",
+        completed: true,
+        date: "Jan 2025",
+        link: "/",
+      },
+      {
+        id: "6",
+        title: "First Remote Job in Australia",
+        description:
+          "Secured my first remote software developer position in Australia, enabling a flexible work-life balance and location independence.",
+        completed: true,
+        date: "Mar 2025",
       },
     ],
   },
@@ -54,48 +69,65 @@ const sections: BucketSectionData[] = [
     number: "02",
     title: "The List",
     description:
-      "Goals, dreams, and technical ambitions I'm actively working towards.",
+      "Goals, dreams, and adventures I'm working towards or have already conquered.",
     items: [
       {
-        id: "5",
-        title: "Skydiving",
-        description:
-          "To experience freefall and conquer the fear of heights from 13,000 feet.",
-        completed: false,
-      },
-      {
-        id: "6",
-        title: "Do 10K marathon",
-        description:
-          "Training to build endurance and mental toughness. Target time: Sub 60 mins.",
-        completed: false,
-      },
-      {
         id: "7",
-        title: "Solo travel to another country",
+        title: "Go Abroad Alone for Study",
         description:
-          "To immerse myself in a completely different culture without a safety net.",
-        completed: false,
+          "Took the leap to move to Australia by myself to pursue higher education, embracing independence and personal growth.",
+        completed: true,
+        date: "Feb 2023",
       },
       {
         id: "8",
-        title: "Write a book about programming",
+        title: "Travel to New Zealand",
         description:
-          "Share knowledge and insights accumulated over years of building software.",
-        completed: false,
+          "Explored the stunning landscapes of New Zealand - from the mountains to the coastlines, an unforgettable adventure.",
+        completed: true,
+        date: "Jan 2026",
       },
       {
         id: "9",
-        title: "Get 1,000+ GitHub followers",
+        title: "Get My First Car",
         description:
-          "Build a reputation through consistent open source contributions and useful repositories.",
-        completed: false,
+          "Achieved the milestone of owning my first car, gaining freedom and independence for road trips and daily commutes.",
+        completed: true,
+        date: "Jul 2025",
       },
       {
         id: "10",
-        title: "Launch a profitable side project",
+        title: "Skydiving",
         description:
-          "Create a SaaS product that generates sustainable recurring revenue.",
+          "To experience the ultimate adrenaline rush - freefalling from 15,000 feet and conquering any fear of heights.",
+        completed: false,
+      },
+      {
+        id: "11",
+        title: "Solo Travel to Another Country",
+        description:
+          "Plan a solo adventure to a completely new country, navigating foreign cultures and making memories on my own terms.",
+        completed: false,
+      },
+      {
+        id: "12",
+        title: "Get 1,000+ GitHub Followers",
+        description:
+          "Build a strong open source presence through consistent contributions and creating useful repositories for the developer community.",
+        completed: false,
+      },
+      {
+        id: "13",
+        title: "Big 3 Total: 300kg",
+        description:
+          "Hit a combined 300kg total in the powerlifting big three (squat, bench press, deadlift) through dedicated strength training.",
+        completed: false,
+      },
+      {
+        id: "14",
+        title: "Launch a Profitable Side Project",
+        description:
+          "Create and launch a SaaS product or app that generates sustainable recurring revenue and provides real value to users.",
         completed: false,
       },
     ],
