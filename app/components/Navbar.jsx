@@ -15,7 +15,7 @@ const mainLinks = [
   { label: "Home", href: "/" },
   { label: "Blog", href: "/blog" },
   { label: "About", href: "/about" },
-  { label: "Projects", href: "/projects" },
+  // { label: "Work", href: "/work" }, // temporarily disabled
 ];
 
 // Large cards with images (left side)
@@ -45,6 +45,7 @@ const quickLinks = [
 // All unique links for mobile menu
 const allLinks = [
   ...mainLinks,
+  // { label: "Work", href: "/work" }, // temporarily disabled
   { label: "Guestbook", href: "/guestbook" },
   { label: "Bucket List", href: "/bucket-list" },
   { label: "Links", href: "/links" },

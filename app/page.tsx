@@ -4,15 +4,15 @@ import BentoGrid from "./components/BentoGrid";
 import HomeAboutSection from "./components/HomeAboutSection";
 import MySiteSection from "./components/MySiteSection";
 import SkillsSection from "./components/SkillsSection";
-import { getFeaturedProject } from "./lib/projects";
+// import { getFeaturedProject } from "./lib/projects"; // temporarily disabled
 
 export default async function Home() {
-  const featuredProject = await getFeaturedProject();
+  // const featuredProject = await getFeaturedProject(); // temporarily disabled
 
   return (
     <>
       <Hero />
-      <BentoGrid featuredProject={featuredProject || undefined} />
+      <BentoGrid />
       <HomeAboutSection />
       <MySiteSection />
       <SkillsSection />

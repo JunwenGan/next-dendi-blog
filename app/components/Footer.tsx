@@ -11,7 +11,7 @@ const Footer = () => {
   const generalLinks = [
     { label: "Home", href: "/" },
     { label: "Blog", href: "/blog" },
-    { label: "Projects", href: "/projects" },
+    // { label: "Work", href: "/work" }, // temporarily disabled
     { label: "About", href: "/about" },
   ];
 
@@ -33,11 +33,11 @@ const Footer = () => {
       href: "https://linkedin.com/in/junwen-gan-b0336b339",
       icon: Linkedin,
     },
-    {
-      label: "Twitter",
-      href: "https://twitter.com",
-      icon: Twitter,
-    },
+    // {
+    //   label: "Twitter",
+    //   href: "https://twitter.com",
+    //   icon: Twitter,
+    // },
   ];
 
   return (

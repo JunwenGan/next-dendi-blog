@@ -109,9 +109,9 @@ export default function BentoGrid({ featuredProject }: BentoGridProps) {
                 into seamless digital experiences.
               </p>
               <div className="flex gap-2">
-                <Button asChild variant="outline" className="border-border text-muted-foreground hover:bg-muted hover:text-foreground">
-                  <Link href="/projects">View Projects</Link>
-                </Button>
+                {/* <Button asChild variant="outline" className="border-border text-muted-foreground hover:bg-muted hover:text-foreground">
+                  <Link href="/work">View Work</Link>
+                </Button> */}
                 <Button asChild variant="outline" className="border-border text-muted-foreground hover:bg-muted hover:text-foreground">
                   <Link href="/guestbook">Guestbook</Link>
                 </Button>

@@ -1,39 +1,18 @@
 "use client";
 
-import { useState } from "react";
-import { motion, useInView, AnimatePresence } from "framer-motion";
+// import { useState } from "react";
+import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { ArrowRight, Copy, Check } from "lucide-react";
+// import { ArrowRight } from "lucide-react";
 import { MonogramLogo } from "./Logo";
 import RotatingDisc from "./RotatingDisc";
-import { Button } from "./ui/button";
-import confetti from "canvas-confetti";
+// import { Button } from "./ui/button";
+// import ContactModal from "./ContactModal";
 
 export default function CTASection() {
-  const [copied, setCopied] = useState(false);
-  const email = "junonegan@gmail.com";
+  // const [isModalOpen, setIsModalOpen] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
   const isInView = useInView(sectionRef, { once: false, margin: "-100px" });
-
-  const copyEmail = async () => {
-    try {
-      await navigator.clipboard.writeText(email);
-      setCopied(true);
-
-      // Trigger confetti celebration
-      confetti({
-        particleCount: 100,
-        spread: 70,
-        origin: { y: 0.6 },
-        colors: ["#6366f1", "#a855f7", "#ec4899", "#3b82f6", "#10b981"],
-      });
-
-      // Reset copied state after 2 seconds
-      setTimeout(() => setCopied(false), 2000);
-    } catch (err) {
-      console.error("Failed to copy email:", err);
-    }
-  };
 
   return (
     <section
@@ -110,45 +89,24 @@ export default function CTASection() {
           </div>
         </div>
 
-        {/* Get In Touch Button */}
-        <motion.div
+        {/* Get In Touch Button - temporarily disabled */}
+        {/* <motion.div
           className="flex justify-center mb-10"
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.6, delay: 0.4 }}
         >
           <Button
-            onClick={copyEmail}
+            onClick={() => setIsModalOpen(true)}
             variant="outline"
             className="group px-6 py-5 text-base border-border bg-card/50 hover:bg-card hover:border-border/80 transition-all duration-300"
           >
-            <AnimatePresence mode="wait">
-              {copied ? (
-                <motion.span
-                  key="copied"
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.8 }}
-                  className="flex items-center gap-2"
-                >
-                  <Check className="w-4 h-4" />
-                  Copied to clipboard!
-                </motion.span>
-              ) : (
-                <motion.span
-                  key="contact"
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.8 }}
-                  className="flex items-center gap-2"
-                >
-                  Get In Touch
-                  <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-                </motion.span>
-              )}
-            </AnimatePresence>
+            <span className="flex items-center gap-2">
+              Get In Touch
+              <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+            </span>
           </Button>
-        </motion.div>
+        </motion.div> */}
 
         {/* Subtext */}
         <motion.div
@@ -166,6 +124,9 @@ export default function CTASection() {
           </p>
         </motion.div>
       </div>
+
+      {/* Contact Modal - temporarily disabled */}
+      {/* <ContactModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} /> */}
     </section>
   );
 }
