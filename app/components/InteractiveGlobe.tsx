@@ -76,11 +76,20 @@ export default function InteractiveGlobe({
         return;
       }
 
-      // Calculate size based on container
-      const size = Math.max(
-        Math.min(width, height > 50 ? height : width),
-        250
+      // Calculate size based on container - smaller on mobile to prevent overflow
+      const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
+      const devicePixelRatio =
+        typeof window !== "undefined"
+          ? Math.min(window.devicePixelRatio || 1, 2)
+          : 1;
+      const maxSize = isMobile ? 240 : 420;
+      const baseSize = Math.min(
+        width * 0.9,
+        height > 50 ? height * 0.9 : width * 0.9,
+        maxSize
       );
+      const minSize = isMobile ? 160 : 250;
+      const size = Math.min(Math.max(baseSize, minSize), width);
 
       // Set initial position to selected location (only on first init)
       const loc = locations[selectedLocation];
@@ -102,23 +111,25 @@ export default function InteractiveGlobe({
         globe = null;
       }
 
-      // Create new globe
+      // Create new globe - optimized settings for mobile
+      const renderSize = Math.floor(size * (isMobile ? 1 : devicePixelRatio));
+
       globe = createGlobe(canvasRef.current, {
-        devicePixelRatio: 2,
-        width: size * 2,
-        height: size * 2,
+        devicePixelRatio: isMobile ? 1 : devicePixelRatio,
+        width: renderSize,
+        height: renderSize,
         phi: phiRef.current,
         theta: thetaRef.current,
         dark: 1,
-        diffuse: 1.2,
-        mapSamples: 16000,
-        mapBrightness: 6,
+        diffuse: isMobile ? 0.8 : 1.2,
+        mapSamples: isMobile ? 4000 : 16000,  // 75% reduction on mobile
+        mapBrightness: isMobile ? 4 : 6,
         baseColor: [0.1, 0.1, 0.15],
         markerColor: [0.2, 0.5, 1],
         glowColor: [0.1, 0.3, 0.6],
         markers: Object.values(locations).map((loc) => ({
           location: loc.coordinates,
-          size: 0.05,
+          size: isMobile ? 0.07 : 0.05,  // Larger markers on mobile for visibility
         })),
         onRender: (state) => {
           // Smooth interpolation to target position
@@ -132,13 +143,15 @@ export default function InteractiveGlobe({
 
           state.phi = phiRef.current + pointerInteractionMovement.current;
           state.theta = thetaRef.current;
-          state.width = size * 2;
-          state.height = size * 2;
+          state.width = renderSize;
+          state.height = renderSize;
         },
       });
 
       canvasRef.current.style.width = `${size}px`;
       canvasRef.current.style.height = `${size}px`;
+      canvasRef.current.width = renderSize;
+      canvasRef.current.height = renderSize;
     };
 
     // Try immediate initialization
@@ -251,14 +264,14 @@ export default function InteractiveGlobe({
   };
 
   return (
-    <div className="relative w-full h-full flex flex-col min-h-[400px]">
+    <div className="relative w-full h-full flex flex-col min-h-[320px] sm:min-h-[400px]">
       {/* Country Badges */}
-      <div className="flex flex-wrap gap-2 justify-center mb-4 z-10">
+      <div className="flex flex-wrap gap-2 justify-center mb-4 z-10 px-2">
         {Object.entries(locations).map(([key, loc]) => (
           <button
             key={key}
             onClick={() => focusLocation(key)}
-            className={`px-3 py-1.5 rounded-full border text-sm transition-all duration-300 cursor-pointer ${
+            className={`px-2.5 py-1 rounded-full border text-xs sm:text-sm transition-all duration-300 cursor-pointer ${
               selectedLocation === key
                 ? "border-blue-500/50 text-blue-400 bg-blue-500/10"
                 : "border-border text-muted-foreground hover:border-border/80 hover:bg-muted/50"
@@ -296,18 +309,18 @@ export default function InteractiveGlobe({
       </div>
 
       {/* Location Pin */}
-      <div className="absolute bottom-4 left-4 flex items-center gap-2 z-10">
+      <div className="absolute bottom-3 left-3 sm:bottom-4 sm:left-4 flex items-center gap-2 z-10">
         <div className="relative">
-          <div className="w-8 h-8 rounded-full border-2 border-blue-500/50 flex items-center justify-center bg-background/50 backdrop-blur-sm">
-            <div className="w-3 h-3 rounded-full bg-blue-500/80 animate-pulse" />
+          <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full border-2 border-blue-500/50 flex items-center justify-center bg-background/50 backdrop-blur-sm">
+            <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-blue-500/80 animate-pulse" />
           </div>
           <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-0 h-0 border-l-[4px] border-r-[4px] border-t-[6px] border-l-transparent border-r-transparent border-t-blue-500/50" />
         </div>
         <div>
-          <p className="text-[10px] text-muted-foreground uppercase tracking-wider">
+          <p className="text-[9px] sm:text-[10px] text-muted-foreground uppercase tracking-wider">
             Remote
           </p>
-          <p className="text-sm text-foreground font-medium">
+          <p className="text-xs sm:text-sm text-foreground font-medium">
             {locations[selectedLocation]?.name || "Melbourne"}
           </p>
         </div>

@@ -79,7 +79,7 @@ export default function BentoGrid({ featuredProject }: BentoGridProps) {
       <div className="noise-texture absolute inset-0" />
       
       <motion.div
-        className="container relative z-10 mx-auto px-8 md:px-16 lg:px-20 py-12 md:py-16 lg:py-20"
+        className="container relative z-10 mx-auto px-4 sm:px-6 md:px-16 lg:px-20 py-8 md:py-16 lg:py-20"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
@@ -96,7 +96,7 @@ export default function BentoGrid({ featuredProject }: BentoGridProps) {
                 <Badge variant="secondary" className="bg-accent-green/20 text-accent-green border-accent-green/30">Available for work</Badge>
               </div>
               <CardTitle className="text-3xl md:text-4xl text-foreground">
-                Hello, I&apos;m Dendi
+                Hello, I&apos;m Frederick
               </CardTitle>
               <CardDescription className="text-lg text-muted-foreground">
                 Full Stack Developer & Problem Solver
@@ -143,19 +143,19 @@ export default function BentoGrid({ featuredProject }: BentoGridProps) {
                 <TechStackScroller
                   technologies={techRow1}
                   direction="right"
-                  speed={15}
+                  speed={35}
                 />
                 {/* Row 2: Scroll left to right */}
                 <TechStackScroller
                   technologies={techRow2}
                   direction="left"
-                  speed={15}
+                  speed={35}
                 />
                 {/* Row 3: Scroll right to left */}
                 <TechStackScroller
                   technologies={techRow3}
                   direction="right"
-                  speed={15}
+                  speed={35}
                 />
               </div>
 
@@ -199,7 +199,7 @@ export default function BentoGrid({ featuredProject }: BentoGridProps) {
                 I&apos;m very flexible with <span className="text-accent-blue">time zone communications</span>
               </CardTitle>
             </CardHeader>
-            <CardContent className="flex-1 pt-0 pb-4 px-4 relative min-h-[300px]">
+            <CardContent className="flex-1 pt-0 pb-4 px-4 relative min-h-[250px] md:min-h-[300px]">
               <InteractiveGlobe defaultLocation="Australia" />
             </CardContent>
           </Card>

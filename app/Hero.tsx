@@ -11,82 +11,49 @@ const Hero = () => {
       {/* Animated Stars with Random Movement */}
       <AnimatedStars />
 
-      {/* Polar Aurora Effects - Animated Gradient Layers - z-[2] */}
+      {/* Polar Aurora Effects - CSS Animated Gradient Layers - z-[2] */}
       {/* Top Edge Aurora */}
-      <motion.div
-        className="absolute top-0 left-0 right-0 h-1/3 pointer-events-none z-[2]"
+      <div
+        className="absolute top-0 left-0 right-0 h-1/3 pointer-events-none z-[2] animate-aurora-1"
         style={{
           background: "linear-gradient(to bottom, var(--hero-top-aurora), transparent)",
-        }}
-        animate={{
-          opacity: [0.2, 0.4, 0.3, 0.2],
-        }}
-        transition={{
-          duration: 12,
-          repeat: Infinity,
-          ease: "easeInOut",
         }}
       />
 
       {/* Bottom Aurora Effect - Concentrated in center only, strong effect */}
       {/* Main aurora - bright white/blue core, centered only */}
-      <motion.div
-        className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[120vw] h-[35vh] pointer-events-none z-[2]"
+      <div
+        className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[120vw] h-[35vh] pointer-events-none z-[2] animate-aurora-2"
         style={{
           background: "var(--hero-aurora-main)",
           filter: "blur(20px)",
         }}
-        animate={{
-          opacity: [0.9, 1, 0.95, 0.9],
-        }}
-        transition={{
-          duration: 12,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
       />
 
       {/* Secondary aurora layer - purple/pink, centered */}
-      <motion.div
-        className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[100vw] h-[30vh] pointer-events-none z-[2]"
+      <div
+        className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[100vw] h-[30vh] pointer-events-none z-[2] animate-aurora-3"
         style={{
           background: "var(--hero-aurora-secondary)",
           filter: "blur(25px)",
         }}
-        animate={{
-          opacity: [0.7, 0.9, 0.8, 0.7],
-        }}
-        transition={{
-          duration: 15,
-          repeat: Infinity,
-          ease: "easeInOut",
-          delay: 2,
-        }}
       />
 
       {/* Bright core line - intense center band */}
-      <motion.div
-        className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[80vw] h-[25vh] pointer-events-none z-[3]"
+      <div
+        className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[80vw] h-[25vh] pointer-events-none z-[3] animate-aurora-4"
         style={{
           background: "var(--hero-aurora-core)",
           filter: "blur(12px)",
         }}
-        animate={{
-          opacity: [0.95, 1, 0.98, 0.95],
-        }}
-        transition={{
-          duration: 10,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
       />
 
       {/* Animated Gradient Orb */}
-      <div className="absolute bottom-[-167px] left-1/2 -translate-x-1/2 transform h-[111px] w-[800px] blur-[80px] bg-[linear-gradient(90deg,#06b6d4,#7c3aed,#4f46e5,#38bdf8,#06b6d4)] bg-[length:300%_100%] animate-gradient-x opacity-80"></div>
+      <div className="absolute bottom-[-167px] left-1/2 -translate-x-1/2 transform h-[111px] w-[800px] blur-[40px] bg-[linear-gradient(90deg,#06b6d4,#7c3aed,#4f46e5,#38bdf8,#06b6d4)] bg-[length:300%_100%] animate-gradient-x opacity-80"></div>
 
       {/* Secondary Glow */}
       <div
-        className="absolute -bottom-[753px] -left-[454px] -right-[432px] h-[955px] rounded-[100%]"
+        className="absolute -bottom-[753px] left-1/2 -translate-x-1/2 w-[calc(100%+900px)] h-[955px] rounded-[100%]"
         style={{
           background: "linear-gradient(to bottom, var(--hero-glow-from), transparent)",
         }}
@@ -94,7 +61,7 @@ const Hero = () => {
 
       {/* Glowing Card/Orb */}
       <div
-        className="absolute -bottom-[759px] -left-[532px] -right-[510px] h-[956px] aspect-[2.346/1] rounded-[100%]"
+        className="absolute -bottom-[759px] left-1/2 -translate-x-1/2 w-[calc(100%+1040px)] h-[956px] rounded-[100%]"
         style={{
           backgroundColor: "var(--hero-orb-bg)",
           boxShadow: "var(--hero-orb-shadow)",
