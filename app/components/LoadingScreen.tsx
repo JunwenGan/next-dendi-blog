@@ -1,6 +1,12 @@
 const LoadingScreen = () => {
   return (
-    <div className="loading-screen">
+    <div
+      className="h-screen flex items-center justify-center z-[100]"
+      style={{
+        backgroundColor: "var(--loading-bg)",
+        color: "var(--loading-fg)",
+      }}
+    >
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
@@ -9,6 +15,7 @@ const LoadingScreen = () => {
         strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
+        className="w-[200px]"
       >
         <path d="M6 18 Q2 18 2 14, T2 10 Q2 6 6 6, M6 6 8 6, M13 18 15 18 Q19 18 19 14,T19 10 Q19 6 15 6"></path>
         <path d="M22 13 22 11" />
@@ -33,21 +40,6 @@ const LoadingScreen = () => {
           />
         </path>
       </svg>
-      <style jsx>{`
-        .loading-screen {
-          height: 100vh;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          background: #1c1b2a;
-          color: #45d6b5;
-          z-index: 100;
-        }
-
-        svg {
-          width: 200px;
-        }
-      `}</style>
     </div>
   );
 };

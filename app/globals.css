@@ -2,22 +2,140 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+    --radius: 0.5rem;
+
+    /* Aurora/Mesh Gradient Colors - Light Theme (softer pastels) */
+    --aurora-1: rgba(99, 102, 241, 0.15);
+    --aurora-2: rgba(168, 85, 247, 0.12);
+    --aurora-3: rgba(59, 130, 246, 0.12);
+    --aurora-4: rgba(236, 72, 153, 0.12);
+    --aurora-5: rgba(139, 92, 246, 0.10);
+    --aurora-6: rgba(14, 165, 233, 0.12);
+
+    /* Star color */
+    --star-color: rgba(30, 30, 30, 0.6);
+
+    /* Surface colors (for cards, navbars) */
+    --surface: 220 14% 96%;
+    --surface-elevated: 0 0% 100%;
+    --surface-border: 220 13% 91%;
+    --surface-hover: 220 14% 93%;
+
+    /* Accent colors */
+    --accent-pink: 330 81% 60%;
+    --accent-green: 142 71% 45%;
+    --accent-blue: 217 91% 60%;
+
+    /* Loading screen */
+    --loading-bg: #f8fafc;
+    --loading-fg: #0d9488;
+
+    /* Noise texture */
+    --noise-color-1: rgba(0, 0, 0, 0.03);
+    --noise-color-2: rgba(0, 0, 0, 0.02);
+
+    /* Hero Aurora Effects - Light Theme */
+    --hero-top-aurora: rgba(147, 197, 253, 0.1);
+    --hero-aurora-main: radial-gradient(ellipse 60% 18% at 50% 0%, rgba(255, 255, 255, 0.8) 0%, rgba(191, 219, 254, 0.6) 8%, rgba(147, 197, 253, 0.4) 18%, rgba(99, 102, 241, 0.2) 30%, transparent 45%);
+    --hero-aurora-secondary: radial-gradient(ellipse 50% 15% at 50% 0%, rgba(168, 85, 247, 0.4) 0%, rgba(236, 72, 153, 0.3) 12%, rgba(147, 51, 234, 0.2) 25%, transparent 40%);
+    --hero-aurora-core: radial-gradient(ellipse 40% 12% at 50% 0%, rgba(255, 255, 255, 0.7) 0%, rgba(191, 219, 254, 0.5) 10%, rgba(147, 197, 253, 0.3) 20%, rgba(99, 102, 241, 0.2) 30%, transparent 45%);
+    --hero-glow-from: rgba(99, 102, 241, 0.4);
+    --hero-orb-bg: rgba(255, 255, 255, 0.05);
+    --hero-orb-shadow: inset 0 2px 20px #4f46e5, 0 -10px 50px 1px rgba(79, 70, 229, 0.12);
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+
+    /* Aurora/Mesh Gradient Colors - Dark Theme (vibrant) */
+    --aurora-1: rgba(99, 102, 241, 0.4);
+    --aurora-2: rgba(168, 85, 247, 0.35);
+    --aurora-3: rgba(59, 130, 246, 0.3);
+    --aurora-4: rgba(236, 72, 153, 0.3);
+    --aurora-5: rgba(139, 92, 246, 0.25);
+    --aurora-6: rgba(14, 165, 233, 0.3);
+
+    /* Star color */
+    --star-color: rgba(255, 255, 255, 0.8);
+
+    /* Surface colors (for cards, navbars) */
+    --surface: 224 71% 4%;
+    --surface-elevated: 215 28% 9%;
+    --surface-border: 217 19% 17%;
+    --surface-hover: 215 25% 12%;
+
+    /* Accent colors */
+    --accent-pink: 330 81% 65%;
+    --accent-green: 142 71% 45%;
+    --accent-blue: 217 91% 65%;
+
+    /* Loading screen */
+    --loading-bg: #1c1b2a;
+    --loading-fg: #45d6b5;
+
+    /* Noise texture */
+    --noise-color-1: rgba(255, 255, 255, 0.1);
+    --noise-color-2: rgba(255, 255, 255, 0.05);
+
+    /* Hero Aurora Effects - Dark Theme */
+    --hero-top-aurora: rgba(59, 130, 246, 0.15);
+    --hero-aurora-main: radial-gradient(ellipse 60% 18% at 50% 0%, rgba(255, 255, 255, 1) 0%, rgba(147, 197, 253, 0.9) 8%, rgba(99, 102, 241, 0.7) 18%, rgba(147, 51, 234, 0.4) 30%, transparent 45%);
+    --hero-aurora-secondary: radial-gradient(ellipse 50% 15% at 50% 0%, rgba(168, 85, 247, 0.8) 0%, rgba(236, 72, 153, 0.6) 12%, rgba(147, 51, 234, 0.4) 25%, transparent 40%);
+    --hero-aurora-core: radial-gradient(ellipse 40% 12% at 50% 0%, rgba(255, 255, 255, 1) 0%, rgba(191, 219, 254, 0.9) 10%, rgba(147, 197, 253, 0.7) 20%, rgba(99, 102, 241, 0.5) 30%, transparent 45%);
+    --hero-glow-from: rgba(255, 255, 255, 1);
+    --hero-orb-bg: rgba(0, 0, 0, 1);
+    --hero-orb-shadow: inset 0 2px 20px #fff, 0 -10px 50px 1px rgba(255, 255, 255, 0.49);
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+@layer base {
+  * {
+    @apply border-border;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: Arial, Helvetica, sans-serif;
+  }
 }
 
 @layer utilities {
@@ -28,4 +146,279 @@ body {
 
 html {
   scroll-behavior: smooth;
+}
+
+/* Star floating animation - GPU accelerated with transform */
+@keyframes star-float {
+  0%, 100% {
+    transform: translate(0, 0);
+    opacity: var(--star-opacity);
+  }
+  25% {
+    transform: translate(var(--dx1), var(--dy1));
+    opacity: calc(var(--star-opacity) * 1.3);
+  }
+50% {
+    transform: translate(var(--dx2), var(--dy2));
+    opacity: calc(var(--star-opacity) * 0.8);
+  }
+  75% {
+    transform: translate(calc(var(--dx2) * -1), calc(var(--dy2) * -1));
+    opacity: calc(var(--star-opacity) * 1.2);
+  }
+}
+
+.animate-star-float {
+  animation: star-float ease-in-out infinite;
+}
+
+/* Aurora pulse animations - GPU accelerated opacity only */
+@keyframes aurora-pulse-1 {
+  0%, 100% { opacity: 0.2; }
+  50% { opacity: 0.4; }
+}
+
+@keyframes aurora-pulse-2 {
+  0%, 100% { opacity: 0.9; }
+  50% { opacity: 1; }
+}
+
+@keyframes aurora-pulse-3 {
+  0%, 100% { opacity: 0.7; }
+  50% { opacity: 0.9; }
+}
+
+@keyframes aurora-pulse-4 {
+  0%, 100% { opacity: 0.95; }
+  50% { opacity: 1; }
+}
+
+.animate-aurora-1 {
+  animation: aurora-pulse-1 12s ease-in-out infinite;
+  will-change: opacity;
+}
+
+.animate-aurora-2 {
+  animation: aurora-pulse-2 12s ease-in-out infinite;
+  will-change: opacity;
+}
+
+.animate-aurora-3 {
+  animation: aurora-pulse-3 15s ease-in-out infinite;
+  animation-delay: 2s;
+  will-change: opacity;
+}
+
+.animate-aurora-4 {
+  animation: aurora-pulse-4 10s ease-in-out infinite;
+  will-change: opacity;
+}
+
+/* Mesh gradient blob animations - GPU accelerated with transform */
+@keyframes blob-float-1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(100px, 50px) scale(1.15); }
+}
+
+@keyframes blob-float-2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-80px, 100px) scale(1.1); }
+}
+
+@keyframes blob-float-3 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(50px, -50px) scale(1.08); }
+}
+
+@keyframes blob-float-4 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(100px, -80px) scale(1.15); }
+}
+
+@keyframes blob-float-5 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-80px, 50px) scale(1.1); }
+}
+
+@keyframes blob-float-6 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-60px, 40px) scale(1.08); }
+}
+
+.animate-blob-1 {
+  animation: blob-float-1 20s ease-in-out infinite;
+}
+
+.animate-blob-2 {
+  animation: blob-float-2 18s ease-in-out infinite;
+  animation-delay: 2s;
+}
+
+.animate-blob-3 {
+  animation: blob-float-3 25s ease-in-out infinite;
+  animation-delay: 5s;
+}
+
+.animate-blob-4 {
+  animation: blob-float-4 22s ease-in-out infinite;
+  animation-delay: 3s;
+}
+
+.animate-blob-5 {
+  animation: blob-float-5 24s ease-in-out infinite;
+  animation-delay: 7s;
+}
+
+.animate-blob-6 {
+  animation: blob-float-6 19s ease-in-out infinite;
+  animation-delay: 4s;
+}
+
+/* Noise Texture Overlay - adds premium grain effect */
+.noise-texture {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: 0.15;
+  z-index: 10000;
+  /* mix-blend-mode removed for better performance */
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      var(--noise-color-1) 0px,
+      transparent 1px,
+      transparent 1px,
+      var(--noise-color-2) 2px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      var(--noise-color-1) 0px,
+      transparent 1px,
+      transparent 1px,
+      var(--noise-color-2) 2px
+    );
+  background-size: 2px 2px;
+}
+
+/* GPU-Accelerated Gradient Animation using CSS @property */
+@property --gradient-x {
+  syntax: '<percentage>';
+  inherits: false;
+  initial-value: 0%;
+}
+
+@keyframes gradient-x {
+  0%, 100% { --gradient-x: 0%; }
+  50% { --gradient-x: 100%; }
+}
+
+.animate-gradient-x {
+  animation: gradient-x 8s ease infinite;
+  background-position: var(--gradient-x) 50%;
+  will-change: --gradient-x;
+}
+
+/* GPU-Accelerated Text Shimmer Animation using CSS @property */
+@property --shimmer-x {
+  syntax: '<percentage>';
+  inherits: false;
+  initial-value: 0%;
+}
+
+@keyframes shimmer {
+  0%, 100% { --shimmer-x: 0%; }
+  50% { --shimmer-x: 100%; }
+}
+
+.text-shimmer {
+  --shimmer-x: 0%;
+  background: linear-gradient(
+    110deg,
+    hsl(var(--foreground)) 20%,
+    hsl(var(--foreground)) calc(35% - var(--shimmer-x) * 0.3),
+    #6366f1 calc(45% - var(--shimmer-x) * 0.3),
+    #a855f7 calc(50% - var(--shimmer-x) * 0.3),
+    #6366f1 calc(55% - var(--shimmer-x) * 0.3),
+    hsl(var(--foreground)) calc(65% - var(--shimmer-x) * 0.3),
+    hsl(var(--foreground)) 80%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 4s ease-in-out infinite;
+  will-change: --shimmer-x;
+}
+
+/* Tech Stack Scroller - CSS animations (runs on compositor thread, won't stutter on scroll) */
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes scroll-right {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.animate-scroll-left {
+  animation: scroll-left linear infinite;
+  will-change: transform;
+}
+
+.animate-scroll-right {
+  animation: scroll-right linear infinite;
+  will-change: transform;
+}
+
+/* Project Marquee - Auto-scrolling with pause on hover */
+@keyframes marquee-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee-scroll {
+  animation: marquee-scroll 25s linear infinite;
+  will-change: transform;
+}
+
+/* Feature card hover effects - removed expensive blur animation */
+.feature-card {
+  opacity: 0.7;
+  transition: opacity 0.3s ease, transform 0.3s ease, background 0.3s ease, border-color 0.3s ease;
+}
+
+.feature-card:hover {
+  opacity: 1;
+  transform: scale(1.05);
+  background: hsl(var(--muted) / 0.6);
+  border-color: hsl(var(--border) / 0.6);
+}
+
+/* Slow spinning animation for rotating disc */
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 12s linear infinite;
 }

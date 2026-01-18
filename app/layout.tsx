@@ -1,15 +1,17 @@
 "use client";
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Cormorant_Garamond } from "next/font/google";
 import Navbar from "./components/Navbar";
 import "./globals.css";
 import Footer from "./components/Footer";
+import CTASection from "./components/CTASection";
 import Hero from "./Hero";
 import { Suspense, useEffect, useRef, useState } from "react";
 import { RefProvider } from "./components/RefProvider";
 import AuthProvider from "./auth/Provider";
 import QueryClientProvider from "./QueryClientProvider";
 import LoadingScreen from "./components/LoadingScreen";
+import { ThemeProvider } from "next-themes";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -19,6 +21,12 @@ const geistSans = Geist({
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+});
+
+const cormorantGaramond = Cormorant_Garamond({
+  variable: "--font-cormorant",
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
 });
 // export const metadata: Metadata = {
 //   title: "Create Next App",
@@ -39,18 +47,22 @@ export default function RootLayout({
     return () => clearTimeout(timer);
   }, []);
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${cormorantGaramond.variable} antialiased`}
       >
-        <QueryClientProvider>
-          <AuthProvider>
-            <RefProvider>
-              <Navbar />
-              {children}
-            </RefProvider>
-          </AuthProvider>
-        </QueryClientProvider>
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
+          <QueryClientProvider>
+            <AuthProvider>
+              <RefProvider>
+                <Navbar />
+                {children}
+                <CTASection />
+                <Footer />
+              </RefProvider>
+            </AuthProvider>
+          </QueryClientProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

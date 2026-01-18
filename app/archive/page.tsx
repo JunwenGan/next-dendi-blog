@@ -2,6 +2,8 @@ import prisma from "@/prisma/client";
 import Userbox from "../components/Userbox";
 import Link from "next/link";
 import { Metadata } from "next";
+import { notFound } from "next/navigation";
+import DecorativeSideBars from "../components/DecorativeSideBars";
 
 const page = async () => {
   const posts = await prisma.post.findMany({
@@ -9,18 +11,16 @@ const page = async () => {
       createAt: "desc",
     },
   });
-  if (!posts) {
-    return {
-      notFound: true,
-    };
+  if (!posts || posts.length === 0) {
+    notFound();
   }
   const postCount = await prisma.post.count();
 
   return (
-    <>
-
+    <div className="relative">
+      <DecorativeSideBars />
       <div className="h-screen">
-        <div className="grid md:grid-cols-[400px_1fr] min-h-full  py-20 px-10 bg-bg-japan bg-fixed bg-no-repeat bg-center bg-cover">
+        <div className="grid md:grid-cols-[400px_1fr] min-h-full  py-20 px-10 pl-12 pr-12 md:pl-20 md:pr-20 lg:pl-24 lg:pr-24 bg-bg-japan bg-fixed bg-no-repeat bg-center bg-cover">
           <div className="hidden md:block w-[400px] mx-auto relative">
             <Userbox />
           </div>
@@ -63,7 +63,7 @@ const page = async () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

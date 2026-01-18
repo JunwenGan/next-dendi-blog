@@ -1,30 +1,26 @@
 import { Metadata } from "next";
 import Hero from "./Hero";
-import HomeBottom from "./HomeBottom";
-import Footer from "./components/Footer";
-import HomeBottomRight from "./components/HomeBottomRight";
-export default function Home({
-  searchParams,
-}: {
-  searchParams: Promise<{ page: string }>;
-}) {
-  // const targetRef = useRef<HTMLDivElement | null>(null);
-  // const handleScroll = () => {
-  //   if (targetRef.current) {
-  //     targetRef.current.scrollIntoView({ behavior: "smooth" });
-  //   }
-  // };
+import BentoGrid from "./components/BentoGrid";
+import HomeAboutSection from "./components/HomeAboutSection";
+import MySiteSection from "./components/MySiteSection";
+import SkillsSection from "./components/SkillsSection";
+// import { getFeaturedProject } from "./lib/projects"; // temporarily disabled
+
+export default async function Home() {
+  // const featuredProject = await getFeaturedProject(); // temporarily disabled
+
   return (
     <>
       <Hero />
-      <HomeBottom searchParams={searchParams} rightComponent={<HomeBottomRight searchParams={searchParams}/>}/>
-      <Footer />
-      {/* <HomeBottom targetRef={targetRef} /> */}
+      <BentoGrid />
+      <HomeAboutSection />
+      <MySiteSection />
+      <SkillsSection />
     </>
   );
 }
 
 export const metadata: Metadata = {
-  title: "Dendi - Blog",
-  description: "This is Dendi Blog"
+  title: "Frederick - Blog",
+  description: "This is Frederick Blog"
 }
