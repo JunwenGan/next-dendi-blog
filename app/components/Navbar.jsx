@@ -14,8 +14,8 @@ import { MonogramLogo } from "./Logo";
 const mainLinks = [
   { label: "Home", href: "/" },
   { label: "Blog", href: "/blog" },
+  { label: "Work", href: "/work" },
   { label: "About", href: "/about" },
-  // { label: "Work", href: "/work" }, // temporarily disabled
 ];
 
 // Large cards with images (left side)
@@ -45,7 +45,6 @@ const quickLinks = [
 // All unique links for mobile menu
 const allLinks = [
   ...mainLinks,
-  // { label: "Work", href: "/work" }, // temporarily disabled
   { label: "Guestbook", href: "/guestbook" },
   { label: "Bucket List", href: "/bucket-list" },
   { label: "Links", href: "/links" },

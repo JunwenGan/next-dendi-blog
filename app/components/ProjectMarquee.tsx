@@ -6,29 +6,35 @@ interface ProjectFeature {
 }
 
 const projectFeatures: ProjectFeature[] = [
+  // Image to Voxel
   {
-    title: "Authentication System",
-    description: "Secure user auth with OAuth, JWT tokens, and role-based access control",
+    title: "Image to Voxel",
+    description: "Turns a prompt into an image, then generates a voxel-art HTML scene",
   },
   {
-    title: "Monitoring & Analytics Infrastructure",
-    description: "Provides real-time metrics, logging, and performance tracking",
+    title: "Prompt-to-Image Generation",
+    description: "Creates clean subject images on simple backgrounds using OpenAI",
   },
   {
-    title: "Design System & UI Consistency",
-    description: "Unified design assets, including typography and component library",
+    title: "Voxel Scene Generation",
+    description: "Generates single-page Three.js HTML files with Google Gemini",
+  },
+  // GourmetVision
+  {
+    title: "GourmetVision",
+    description: "Transforms restaurant menus into visual experiences with AI",
   },
   {
-    title: "API Gateway & Documentation",
-    description: "Guides developers to integrate with the SaaS platform efficiently",
+    title: "Menu Scanning & Analysis",
+    description: "Extracts dish names, descriptions, prices using Gemini API",
   },
   {
-    title: "User Onboarding Flow Design",
-    description: "Step-by-step guides and interactive tutorials for new users",
+    title: "AI Food Photo Generation",
+    description: "Creates realistic food photos for each dish using OpenAI",
   },
   {
-    title: "Payment System Architecture",
-    description: "Handles recurring payments, upgrades, and billing management",
+    title: "Multi-Language Support",
+    description: "Automatically translates menu items to English",
   },
 ];
 

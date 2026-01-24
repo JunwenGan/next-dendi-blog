@@ -275,7 +275,7 @@ export default function BentoGrid({ featuredProject }: BentoGridProps) {
 
                 {/* Title */}
                 <h3 className="text-xl md:text-2xl font-medium text-foreground">
-                  Currently building a Saas Application
+                  Currently building a Next.js Application
                 </h3>
               </div>
             </CardContent>

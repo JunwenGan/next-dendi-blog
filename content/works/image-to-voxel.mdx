@@ -1,0 +1,41 @@
+---
+title: "Image to Voxel"
+summary: "Turns a prompt into an image, then generates a voxel-art HTML scene using AI"
+date: "2025-01-15"
+image: "/images/work/image-to-voxel.jpg"
+techStack: ["Next.js", "TypeScript", "OpenAI", "Google Gemini", "Three.js", "Tailwind CSS"]
+githubUrl: "https://github.com/JunwenGan/image-to-voxel"
+liveUrl: "https://image-to-voxel.vercel.app/"
+featured: true
+published: true
+---
+
+## Overview
+
+Image to Voxel is an innovative AI-powered application that transforms text prompts into stunning voxel-art HTML scenes. The project combines multiple AI technologies to create a seamless creative workflow.
+
+## How It Works
+
+The application follows a two-step AI pipeline:
+
+1. **Prompt-to-Image Generation**: Using OpenAI's image generation API, the system creates clean subject images on simple backgrounds based on user prompts.
+
+2. **Voxel Scene Generation**: Google Gemini then analyzes the generated image and creates a single-page Three.js HTML file that renders the subject as interactive voxel art.
+
+## Key Features
+
+- **Text-to-Image**: Generate images from natural language descriptions
+- **AI-Powered Voxelization**: Automatic conversion of 2D images to 3D voxel scenes
+- **Interactive 3D Viewer**: Rotate, zoom, and explore your voxel creations
+- **Downloadable HTML**: Export self-contained HTML files with embedded Three.js
+- **Real-time Preview**: Instant visualization of generated content
+
+## Technical Implementation
+
+The frontend is built with Next.js and TypeScript, providing a responsive and type-safe development experience. The UI uses Tailwind CSS for styling, ensuring a clean and modern aesthetic.
+
+The backend integrates with multiple AI services:
+- OpenAI API for image generation
+- Google Gemini for code generation and image analysis
+
+Three.js powers the 3D rendering, creating interactive voxel scenes that users can manipulate in real-time.
