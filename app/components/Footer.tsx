@@ -11,7 +11,7 @@ const Footer = () => {
   const generalLinks = [
     { label: "Home", href: "/" },
     { label: "Blog", href: "/blog" },
-    // { label: "Work", href: "/work" }, // temporarily disabled
+    { label: "Work", href: "/work" },
     { label: "About", href: "/about" },
   ];
 
